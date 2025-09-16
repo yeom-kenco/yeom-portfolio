@@ -28,7 +28,7 @@ type RevealProps<T extends keyof JSX.IntrinsicElements> = PropsWithChildren<
 
 export default function Reveal<T extends keyof JSX.IntrinsicElements = 'div'>({
   as,
-  delay = 0,
+  delay = 0.4,
   y = 16,
   once = true,
   className,
@@ -45,7 +45,7 @@ export default function Reveal<T extends keyof JSX.IntrinsicElements = 'div'>({
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ amount: 0.5, once }}
-      transition={{ type: 'spring', stiffness: 210, damping: 22, delay }}
+      transition={{ type: 'spring', stiffness: 180, damping: 26, delay }}
       // 선택한 태그의 고유 props 전달 (type-safe)
       {...(rest as ComponentPropsWithoutRef<T>)}
     >

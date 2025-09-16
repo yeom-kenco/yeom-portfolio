@@ -22,7 +22,7 @@ export default function StickyNav({
   pinAtId = 'about',
   topInset = 36,
   appearTopRatioMd = 0.9, // md 이상(>=768px)
-  appearTopRatioSm = 0.9, // 모바일(<768px) — 더 아래에서 등장
+  appearTopRatioSm = 0.9, // 모바일(<768px)
 }: {
   sections: SectionRef[];
   appearWithinId?: string;
@@ -99,7 +99,7 @@ export default function StickyNav({
   return (
     <motion.nav
       style={{ top, opacity }}
-      className="fixed inset-x-0 z-40" // 수평 가운데: Container가 알아서 중앙에 놓음
+      className="fixed inset-x-0 z-40" // 수평 가운데
       aria-hidden={opacity < 0.02}
     >
       <Container>

@@ -1,18 +1,14 @@
-/**
- * Hero(Section-1): 도입부
- */
+/*
+ Hero(Section-1): 도입부
+*/
 import Section from '../primitives/Section';
 import Container from '../primitives/Container';
 import Reveal from '../motion/Reveal';
-import type { CSSProperties } from 'react';
 import { MButton } from './../primitives/Button';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { toast } from '../hooks/useToast';
 
 export default function Hero() {
-  const orb = (w: number, h: number, cls: string, extra: CSSProperties) => (
-    <div style={{ width: w, height: h, ...extra }} className={`absolute rounded-full ${cls}`} />
-  );
-
   const upDate = '2025.09.15';
 
   return (
@@ -30,18 +26,27 @@ export default function Hero() {
         >
           {/* LEFT: 이미지 - 세로 가운데 정렬되도록 래퍼를 stretch + flex-center */}
           <div className="relative h-full self-stretch flex items-center justify-center md:justify-start md:ml-20">
-            {orb(240, 240, 'hidden md:block bg-brand-purple shadow-brand-glow', {
-              left: -60,
-              top: 10,
-            })}
-            {orb(180, 180, 'hidden md:block bg-brand-purple shadow-elev', {
-              right: 70,
-              bottom: 25,
-            })}
+            {/* 보라 원: 첫 진입 시만 살짝 떠오름 */}
+            <Reveal
+              y={18}
+              delay={0.05}
+              once
+              className="hidden md:block absolute left-[-60px] top-[10px] w-[240px] h-[240px] rounded-full bg-brand-purple shadow-brand-glow"
+            />
 
+            {/* 보라 원: 약간 더 늦게 */}
+            <Reveal
+              y={14}
+              delay={0.08}
+              once
+              className="hidden md:block absolute right-[70px] bottom-[25px] w-[180px] h-[180px] rounded-full bg-brand-purple shadow-elev"
+            />
+
+            {/* 프로필 이미지 */}
             <Reveal
               as="img"
-              y={26}
+              y={22}
+              delay={0.08}
               className="relative z-10 w-[292px] max-w-[65%] rounded-[5rem]"
               src="/images/profile.webp"
               alt="프로필"
@@ -78,7 +83,7 @@ export default function Hero() {
               </Reveal>
 
               <Reveal y={10}>
-                <p className="font-heading leading-tight text-[clamp(18px,2.4vw,32px)] font-normal text-brand-purple/90">
+                <p className="font-heading leading-tight text-[clamp(18px,2.3vw,32px)] font-normal text-brand-purple/90">
                   즐거운 경험을 만드는
                   <br />
                   <b className="font-heading text-[clamp(18px,2.4vw,32px)] text-brand-purple">
@@ -94,7 +99,14 @@ export default function Hero() {
               <MButton
                 whileHover={{ y: -2, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => window.open('/resume.pdf', '_blank')}
+                onClick={() =>
+                  toast({
+                    title: '이력서',
+                    message: '아직 준비중입니다! 곧 업데이트할게요 🙏',
+                    variant: 'warning', // success | warning | error | default
+                    duration: 2400, // (ms) 원하면 조절
+                  })
+                }
                 className="self-center md:self-start"
               >
                 이력서 다운로드
