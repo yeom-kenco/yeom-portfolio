@@ -10,8 +10,10 @@ import ToastViewport from './components/toast/ToastViewport';
 
 // 상단 스티키 내비게이션
 import StickyNav from './components/nav/StickyNav';
+
 import EduExpSection from './sections/EduExpSection';
 import ProjectsSection from './sections/ProjectsSection';
+import 'devicon/devicon.min.css';
 
 // 내비게이션에 사용할 섹션 정의(앵커 id + 라벨)
 const sections = [

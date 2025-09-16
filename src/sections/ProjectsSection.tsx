@@ -1,11 +1,12 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, useAnimation, Variants, useInView } from 'framer-motion';
 import Section from '../primitives/Section';
 import Container from '../primitives/Container';
-import BaseModal from '../components/modals/BaseModal';
 import ProjectCard from '../features/projects/components/ProjectCard';
 import { PROJECTS } from '../features/projects/data/projects';
 import { Project } from '../features/projects/types';
+import ProjectModal from '../features/projects/components/ProjectModal';
+import { PROJECT_DETAILS } from '../features/projects/data/details'; // <- 반드시 .tsx
 
 /** 카드 묶음 컨테이너: 자식 stagger 등장 */
 const containerVariants: Variants = {
@@ -16,17 +17,27 @@ const containerVariants: Variants = {
 export default function ProjectsSection() {
   const [active, setActive] = useState<Project | null>(null);
 
-  // InView로 섹션 진입 시 자연스러운 "떠오름" 애니메이션 시작
+  // 섹션 진입 시 자연스러운 "떠오름" 애니메이션 시작
   const ref = useRef<HTMLDivElement | null>(null);
   const inView = useInView(ref, { amount: 0.25, once: true });
   const controls = useAnimation();
 
-  useMemo(() => {
+  // ✅ useEffect로 실제 side-effect 실행
+  useEffect(() => {
     if (inView) controls.start('show');
   }, [inView, controls]);
 
   const open = (p: Project) => setActive(p);
   const close = () => setActive(null);
+
+  // ✅ active.id로 상세데이터 찾기 (없으면 undefined)
+  const detail = useMemo(() => (active ? PROJECT_DETAILS[active.id] : undefined), [active]);
+
+  // optional: 개발 중 키 불일치 확인용
+  if (active && !detail) {
+    // eslint-disable-next-line no-console
+    console.warn(`[ProjectsSection] PROJECT_DETAILS에 '${active.id}' 키가 없습니다.`);
+  }
 
   return (
     <Section id="projects" className="bg-white">
@@ -66,13 +77,8 @@ export default function ProjectsSection() {
         </div>
       </Container>
 
-      {/* 공용 모달 (재사용 가능) */}
-      <BaseModal isOpen={!!active} onClose={close} title={active?.title}>
-        {/* 여기 내용은 2단계에서 상세 템플릿 & DEVICON 아이콘들로 확장 */}
-        <div className="p-2">
-          <p className="text-body-1 text-black/70">{active?.summary}</p>
-        </div>
-      </BaseModal>
+      {/* ✅ detail이 있을 때만 모달 오픈 */}
+      <ProjectModal open={Boolean(detail)} onClose={close} detail={detail} />
     </Section>
   );
 }

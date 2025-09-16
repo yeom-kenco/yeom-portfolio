@@ -1,88 +1,100 @@
-import { useEffect } from 'react';
-import { createPortal } from 'react-dom';
+// BaseModal.tsx
+import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-type BaseModalProps = {
-  isOpen: boolean;
-  onClose: () => void;
-  title?: string;
-  children?: React.ReactNode;
-  className?: string; // 컨텐츠 박스 커스터마이즈
-};
-
-// 접근성 & 재사용을 염두에 둔 기본 모달
 export default function BaseModal({
   isOpen,
   onClose,
-  title,
   children,
   className = '',
-}: BaseModalProps) {
-  // ESC 키로 닫기
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  // ▼ 스크롤 락 상태 저장용
+  const lockRef = useRef<{
+    scrollY: number;
+    prev: Partial<CSSStyleDeclaration>;
+  } | null>(null);
+
+  // ▼ 모달 열릴 때 바디 스크롤 잠그기 (+ iOS 고정, 스크롤바 보정)
   useEffect(() => {
     if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
-    window.addEventListener('keydown', onKey);
-    // 바디 스크롤 잠금
-    const original = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      window.removeEventListener('keydown', onKey);
-      document.body.style.overflow = original;
-    };
-  }, [isOpen, onClose]);
 
-  const overlay = (
+    const body = document.body;
+    const docEl = document.documentElement;
+    const scrollY = window.scrollY || window.pageYOffset || docEl.scrollTop || 0;
+
+    const prev = {
+      overflow: body.style.overflow,
+      position: body.style.position,
+      top: body.style.top,
+      width: body.style.width,
+      paddingRight: body.style.paddingRight,
+    };
+
+    // 스크롤바 폭 계산(레이아웃 흔들림 방지)
+    const scrollbarW = window.innerWidth - docEl.clientWidth;
+    if (scrollbarW > 0) body.style.paddingRight = `${scrollbarW}px`;
+
+    // iOS까지 고려한 고정(바운스 방지)
+    body.style.overflow = 'hidden';
+    body.style.position = 'fixed';
+    body.style.top = `-${scrollY}px`;
+    body.style.width = '100%';
+
+    lockRef.current = { scrollY, prev };
+
+    return () => {
+      // 원복 + 기존 스크롤 위치 복귀
+      const saved = lockRef.current;
+      if (saved) {
+        body.style.overflow = saved.prev.overflow || '';
+        body.style.position = saved.prev.position || '';
+        body.style.top = saved.prev.top || '';
+        body.style.width = saved.prev.width || '';
+        body.style.paddingRight = saved.prev.paddingRight || '';
+        window.scrollTo(0, saved.scrollY);
+      }
+      lockRef.current = null;
+    };
+  }, [isOpen]);
+
+  return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-[1000] flex items-center justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          {/* overlay */}
-          <motion.button
-            aria-label="닫기"
-            onClick={onClose}
-            className="absolute inset-0 bg-black/50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          />
-          {/* panel */}
+        <div className="fixed inset-0 z-[1000] flex items-start justify-center p-4 md:p-8">
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/40" onClick={onClose} aria-hidden />
+          {/* 바깥: radius + overflow-hidden (모서리 깨짐 방지) */}
           <motion.div
-            className={`relative max-h-[85vh] w-[min(960px,92vw)] overflow-auto rounded-2xl bg-white p-6 shadow-xl ${className}`}
-            initial={{ y: 24, scale: 0.98, opacity: 0 }}
-            animate={{
-              y: 0,
-              scale: 1,
-              opacity: 1,
-              transition: { type: 'spring', stiffness: 240, damping: 26 },
-            }}
-            exit={{ y: 24, opacity: 0 }}
+            role="dialog"
+            aria-modal="true"
+            initial={{ opacity: 0, y: 12, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 12, scale: 0.98 }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
+            className={
+              'relative w-full max-w-4xl rounded-xl bg-white shadow-xl ring-1 ring-black/5 overflow-hidden ' +
+              className
+            }
           >
-            {/* 헤더 */}
-            <div className="flex items-start justify-between gap-4">
-              {title ? <h3 className="text-title-4 max-md:text-title-6">{title}</h3> : <span />}
-              <button
-                onClick={onClose}
-                className="rounded-xl p-2 transition-colors hover:bg-surface-soft"
-                aria-label="모달 닫기"
-              >
-                ✕
-              </button>
-            </div>
-            {/* 컨텐츠 */}
-            <div className="mt-4">{children}</div>
+            {/* 닫기 */}
+            <button
+              onClick={onClose}
+              className="absolute right-4 top-4 rounded-full p-2 text-ink-muted hover:bg-surface-soft"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+
+            {/* 안쪽: 내용 스크롤만 여기 */}
+            <div className="max-h-[calc(100dvh-6rem)] overflow-y-auto">{children}</div>
           </motion.div>
-        </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );
-
-  // 포털로 body 끝에 렌더링
-  return createPortal(overlay, document.body);
 }

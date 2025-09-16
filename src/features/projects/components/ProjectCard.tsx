@@ -70,7 +70,7 @@ export default function ProjectCard({ project, onClick }: Props) {
             e.stopPropagation();
             handleOpen();
           }}
-          className="inline-flex items-center gap-1 rounded-lg text-sm text-brand-purple underline-offset-2 hover:underline"
+          className="inline-flex items-center gap-1 rounded-lg text-sm text-brand-purple"
           aria-label={`${project.title} 자세히 보기`}
         >
           자세히 보기<span aria-hidden>›</span>
