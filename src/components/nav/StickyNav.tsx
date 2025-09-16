@@ -103,7 +103,7 @@ export default function StickyNav({
     >
       <Container>
         {/* 알약 네비 */}
-        <div className="flex items-center gap-3 rounded-full border  bg-surface backdrop-blur px-4 py-3 shadow-brand-glow">
+        <div className="flex items-center gap-3 rounded-full bg-surface/1 backdrop-blur px-4 py-3 shadow-brand-glow">
           {/* 메뉴: 점 오른쪽 영역을 가득 차게 하고 내부는 균등 정렬 */}
           <nav className="flex-1">
             <ul className="flex w-full items-center justify-evenly text-sm max-[380px]:text-xs md:text-lg">

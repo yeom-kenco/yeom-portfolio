@@ -88,8 +88,10 @@ function FeatureCard({ icon, title, desc }: { icon: string; title: string; desc:
     >
       <div className="flex flex-col items-center text-center">
         <img src={icon} alt="" className="hidden md:block w-36" />
-        <h3 className="mt-1 text-m font-heading font-semibold text-gray-800">{title}</h3>
-        <p className="mt-3 text-sm leading-6 text-gray-600">{desc}</p>
+        <h3 className="mt-1 text-[clamp(16px,1.2vw,18px)] font-heading font-semibold text-gray-800">
+          {title}
+        </h3>
+        <p className="mt-3 text-[clamp(14px,1.2vw,15px)] leading-6 text-gray-600">{desc}</p>
       </div>
     </motion.div>
   );

@@ -1,0 +1,44 @@
+import { Project } from '../types';
+
+export const PROJECTS: Project[] = [
+  {
+    id: 'portfolio',
+    title: '포트폴리오 사이트',
+    coverImg: '/images/projects/thumbnail_portfolio.webp',
+    summary:
+      '나의 프로젝트, 경험, 성장을 한눈에 확인할 수 있도록 직접 디자인하고 개발한 포트폴리오 사이트',
+    stacks: ['react', 'typescript', 'tailwindcss', 'framer'],
+  },
+  {
+    id: 'itplace',
+    title: '통신사 멤버십 혜택 지도',
+    coverImg: '/images/projects/thumbnail_itplace.webp',
+    summary:
+      'LG U+ 멤버십 사용자가 전국 제휴처를 지도 기반으로 탐색하고, 맞춤형 혜택 추천을 받을 수 있는 플랫폼',
+    stacks: ['react', 'typescript', 'redux', 'kakaomap', 'gsap'],
+  },
+  {
+    id: 'jobthoughts',
+    title: '진로 탐색 & 채용 연계 서비스',
+    coverImg: '/images/projects/thumbnail_jobthoughts.webp',
+    summary:
+      '사용자의 성향과 가치관에 맞는 직업을 추천하고, 그 직업의 채용 공고까지 연결하는 진로 탐색 및 채용 연계 서비스',
+    stacks: ['react', 'typescript', 'zustand', 'nivo', 'framer'],
+  },
+  {
+    id: 'umate',
+    title: '통신사 요금제 추천 AI 챗봇 및 리뷰 서비스',
+    coverImg: '/images/projects/thumbnail_umate.webp',
+    summary:
+      '통신사 요금제를 쉽고 빠르게 탐색하고, AI 챗봇과의 대화를 통해 사용자에게 맞춤형 요금제를 추천하는 서비스',
+    stacks: ['react', 'typescript', 'zustand', 'nivo', 'framer'],
+  },
+  {
+    id: 'Netflix',
+    title: '웹 아키텍처의 이해',
+    coverImg: '/images/projects/thumbnail_netflix.webp',
+    summary:
+      '넷플릭스 홈페이지와 유사하게 클론 코딩하며, API를 활용하는 방법과 웹 아키텍처를 이해하는 프로젝트',
+    stacks: ['react', 'typescript', 'zustand', 'nivo', 'framer'],
+  },
+];
