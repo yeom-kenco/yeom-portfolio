@@ -5,6 +5,7 @@ import Section from './primitives/Section';
 import Container from './primitives/Container';
 import { H2 } from './primitives/Heading';
 import Text from './primitives/Text';
+import ToastViewport from './components/toast/ToastViewport';
 
 // 상단 스티키 내비게이션
 import StickyNav from './components/nav/StickyNav';
@@ -42,6 +43,7 @@ export default function App() {
       {sections.map((s) => (
         <Placeholder key={s.id} id={s.id} title={s.label} />
       ))}
+      <ToastViewport />
     </>
   );
 }
