@@ -91,7 +91,6 @@ export default function StickyNav({
   const scrollToAbout = () => {
     const target =
       document.getElementById('about') ||
-      document.getElementById('exp') ||
       (sections.length ? document.getElementById(sections[0].id) : null);
     target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };

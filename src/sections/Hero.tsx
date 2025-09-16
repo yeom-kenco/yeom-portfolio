@@ -9,7 +9,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { toast } from '../hooks/useToast';
 
 export default function Hero() {
-  const upDate = '2025.09.15';
+  const upDate = '2025.09.16';
 
   return (
     <Section id="top" className="bg-surface">
@@ -26,7 +26,7 @@ export default function Hero() {
         >
           {/* LEFT: 이미지 - 세로 가운데 정렬되도록 래퍼를 stretch + flex-center */}
           <div className="relative h-full self-stretch flex items-center justify-center md:justify-start md:ml-20">
-            {/* 보라 원: 첫 진입 시만 살짝 떠오름 */}
+            {/* 보라 원1: 첫 진입 시만 살짝 떠오름 */}
             <Reveal
               y={18}
               delay={0.05}
@@ -34,12 +34,12 @@ export default function Hero() {
               className="hidden md:block absolute left-[-60px] top-[10px] w-[240px] h-[240px] rounded-full bg-brand-purple shadow-brand-glow"
             />
 
-            {/* 보라 원: 약간 더 늦게 */}
+            {/* 보라 원2: 약간 더 늦게 */}
             <Reveal
               y={14}
               delay={0.08}
               once
-              className="hidden md:block absolute right-[70px] bottom-[25px] w-[180px] h-[180px] rounded-full bg-brand-purple shadow-elev"
+              className="hidden md:block absolute right-[110px] bottom-[30px] w-[180px] h-[180px] rounded-full bg-brand-purple shadow-elev"
             />
 
             {/* 프로필 이미지 */}
@@ -135,7 +135,7 @@ export default function Hero() {
               aria-label="다음 섹션으로 이동"
               onClick={() =>
                 document
-                  .getElementById('exp')
+                  .getElementById('about')
                   ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
               }
               className="w-[38px] h-[38px] grid place-items-center"

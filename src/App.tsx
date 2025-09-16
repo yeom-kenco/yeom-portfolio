@@ -1,6 +1,7 @@
 // src/App.tsx
 // 섹션/프리미티브
 import Hero from './sections/Hero';
+import AboutMeSection from './sections/AboutMeSection';
 import Section from './primitives/Section';
 import Container from './primitives/Container';
 import { H2 } from './primitives/Heading';
@@ -34,10 +35,11 @@ export default function App() {
   return (
     <>
       {/* 스크롤 이후 등장·고정되는 네비게이션 */}
-      <StickyNav sections={sections} appearWithinId="top" pinAtId="exp" />
+      <StickyNav sections={sections} appearWithinId="top" pinAtId="about" />
 
       {/* 섹션-1: 도입부(히어로) */}
       <Hero />
+      <AboutMeSection />
 
       {/* 이후 섹션들(앵커만 우선 만들어 둠) */}
       {sections.map((s) => (

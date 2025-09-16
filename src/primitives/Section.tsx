@@ -10,7 +10,7 @@ export default function Section({
   className,
 }: PropsWithChildren<{ id?: string; className?: string }>) {
   return (
-    <section id={id} className={clsx('py-20 md:py-24', className)}>
+    <section id={id} className={clsx('py-20 md:py-36', className)}>
       {children}
     </section>
   );

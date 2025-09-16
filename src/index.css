@@ -15,3 +15,13 @@ html,
 body {
   background-color: bg-surface;
 }
+
+/* 특정 구절에만 줄 하이라이트 */
+.hl-line {
+  background-image: linear-gradient(rgb(241, 241, 241) 0);
+  background-size: 100% 1.15em; /* 두께 조절 */
+  background-repeat: repeat-y;
+  background-position: 0 0.2em; /* 세로 위치 미세 조정 */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone; /* 여러 줄에서도 줄마다 배경 유지 */
+}
