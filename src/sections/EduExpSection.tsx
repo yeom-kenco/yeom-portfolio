@@ -126,7 +126,7 @@ export default function EduExpSection() {
     <Section id="exp" className="bg-surface">
       <Container>
         <div className="mx-auto max-w-2xl px-6">
-          {/* 제목 */}
+          {/* 제목(h2/p) — 이 부분은 크기 그대로 유지 */}
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -140,7 +140,6 @@ export default function EduExpSection() {
             <p className="mt-3 font-heading text-[clamp(18px,1vw,22px)] text-ink">
               프론트엔드 개발자로 성장하기 위해 쌓아온 관련 교육 및 경험, 자격증 입니다.
             </p>
-            {/* 가운데 짧은 세로선 */}
             <div className="relative mx-auto mt-8 h-8 w-[1px] bg-transparent">
               <span className="absolute left-1/2 top-1/2 h-10 w-[1px] -translate-x-1/2 -translate-y-1/2 bg-brand-purple" />
             </div>
@@ -152,8 +151,9 @@ export default function EduExpSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.45, ease: 'easeOut' }}
-            className="mb-6 text-lg font-semibold text-brand-purple"
+            className="mb-6 font-semibold text-brand-purple text-[clamp(1rem,0.96rem+0.5vw,1.25rem)]"
           ></motion.h3>
+
           <TimelineList items={eduAndExperience} />
 
           <Divider />
@@ -164,8 +164,9 @@ export default function EduExpSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.45, ease: 'easeOut' }}
-            className="mb-6 text-lg font-semibold text-[#7F6BFF]"
+            className="mb-6 font-semibold text-[#7F6BFF] text-[clamp(1rem,0.96rem+0.5vw,1.25rem)]"
           ></motion.h3>
+
           <TimelineList items={awards} />
 
           <Divider />
@@ -176,8 +177,9 @@ export default function EduExpSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.45, ease: 'easeOut' }}
-            className="mb-6 text-lg font-semibold text-[#7F6BFF]"
+            className="mb-6 font-semibold text-[#7F6BFF] text-[clamp(1rem,0.96rem+0.5vw,1.25rem)]"
           ></motion.h3>
+
           <CertificateList items={certificates} />
         </div>
       </Container>
@@ -213,19 +215,26 @@ function TimelineRow({ item }: { item: TimelineItem }) {
       className="grid grid-cols-[80px_1fr] md:grid-cols-[120px_1fr] gap-6 items-start"
     >
       {/* 날짜 */}
-      <div className="flex items-start gap-1 font-heading text-sm md:text-base text-brand-purple">
+      <div className="flex items-start gap-1 font-heading text-brand-purple text-[clamp(0.875rem,0.84rem+0.2vw,1.125rem)]">
         <span className="mt-[1px] inline-block">*</span>
         <span className="font-medium">{item.date}</span>
       </div>
 
       {/* 내용 */}
       <div className="text-ink max-w-[30rem]">
-        <p className="font-heading font-extrabold md:text-base">{item.title}</p>
+        {/* 제목(기본 16px → 큰 화면 18px) */}
+        <p className="font-heading font-extrabold text-[clamp(0.875rem,0.96rem+0.2vw,1.125rem)]">
+          {item.title}
+        </p>
+        {/* 부제(모바일 14px → 큰 화면 18px) */}
         {item.subtitle && (
-          <p className="font-heading text-sm md:text-base text-ink">{item.subtitle}</p>
+          <p className="font-heading text-ink text-[clamp(0.875rem,0.84rem+0.2vw,1.125rem)]">
+            {item.subtitle}
+          </p>
         )}
+        {/* 불릿(모바일 14px → 큰 화면 16px) */}
         {!!item.bullets?.length && (
-          <ul className="mt-3 font-body space-y-1 text-sm text-ink-muted list-disc pl-4">
+          <ul className="mt-3 list-disc pl-4 font-body text-ink-muted space-y-1 text-[clamp(0.875rem,0.84rem+0.1vw,1rem)]">
             {item.bullets!.map((b, i) => (
               <li key={i}>{b}</li>
             ))}
@@ -262,17 +271,21 @@ function CertificateRow({ item }: { item: CertificateItem }) {
       className="grid grid-cols-[80px_1fr] md:grid-cols-[120px_1fr] gap-6"
     >
       {/* 날짜 */}
-      <div className="flex items-start gap-1 font-heading text-sm md:text-base text-brand-purple">
+      <div className="flex items-start gap-1 font-heading text-brand-purple text-[clamp(0.875rem,0.84rem+0.2vw,1.125rem)]">
         <span className="mt-[1px] inline-block">*</span>
         <span className="font-medium">{item.date}</span>
       </div>
 
       {/* 내용 + 토글 */}
       <div>
-        <p className="font-heading font-extrabold text-ink md:text-base">{item.name}</p>
+        {/* 이름(기본 16px → 큰 화면 18px) */}
+        <p className="font-heading font-extrabold text-ink text-[clamp(0.875rem,0.96rem+0.2vw,1.125rem)]">
+          {item.name}
+        </p>
 
+        {/* 불릿(모바일 14px → 큰 화면 16px) */}
         {!!item.bullets?.length && (
-          <ul className="mt-2 space-y-1 text-sm font-body text-ink-muted list-disc pl-4">
+          <ul className="mt-2 list-disc pl-4 font-body text-ink-muted space-y-1 text-[clamp(0.875rem,0.84rem+0.15vw,1rem)]">
             {item.bullets!.map((b, i) => (
               <li key={i}>{b}</li>
             ))}
@@ -283,7 +296,7 @@ function CertificateRow({ item }: { item: CertificateItem }) {
           <div className="mt-2">
             <button
               onClick={() => setOpen((v) => !v)}
-              className="group inline-flex items-center gap-1 text-brand-purple text-sm font-medium hover:text-purple-600"
+              className="group inline-flex items-center gap-1 font-medium text-brand-purple hover:text-purple-600 text-[clamp(0.875rem,0.84rem+0.15vw,1rem)]"
             >
               <svg
                 width="14"
