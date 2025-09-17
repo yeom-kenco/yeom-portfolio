@@ -75,7 +75,7 @@ export default function ContactSection() {
         </p>
         <p className="mt-6 max-w-2xl text-sm md:text-base text-ink-muted leading-relaxed">
           ‘그럼 그렇지’ 보다 ‘이번에도 하나 배웠다’를, <br />
-          ‘못하겠어요’ 보다 ‘그럼 한번 해볼게요’를 내뱉는 개발자가 되겠습니다.
+          ‘못하겠어요’ 말고 ‘그럼 한번 해볼게요’를 내뱉는 개발자가 되겠습니다.
         </p>
 
         {/* 아이콘 리스트 */}
