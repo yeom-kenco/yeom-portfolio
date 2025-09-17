@@ -2,10 +2,6 @@
 // 섹션/프리미티브
 import Hero from './sections/Hero';
 import AboutMeSection from './sections/AboutMeSection';
-import Section from './primitives/Section';
-import Container from './primitives/Container';
-import { H2 } from './primitives/Heading';
-import Text from './primitives/Text';
 import ToastViewport from './components/toast/ToastViewport';
 
 // 상단 스티키 내비게이션
@@ -15,6 +11,7 @@ import EduExpSection from './sections/EduExpSection';
 import ProjectsSection from './sections/ProjectsSection';
 import 'devicon/devicon.min.css';
 import TechStackSection from './sections/TechStackSection';
+import ContactSection from './sections/ContactSection';
 
 // 내비게이션에 사용할 섹션 정의(앵커 id + 라벨)
 const sections = [
@@ -23,18 +20,6 @@ const sections = [
   { id: 'skills', label: '기술' },
   { id: 'contact', label: 'Contact' },
 ];
-
-// 아직 실제 컨텐츠가 없는 섹션은 플레이스홀더로 표시
-function Placeholder({ id, title }: { id: string; title: string }) {
-  return (
-    <Section id={id} className="bg-surface">
-      <Container>
-        <H2 className="text-brand-purple">#{title}</H2>
-        <Text muted>이 영역은 다음 단계에서 실제 컨텐츠로 채웁니다.</Text>
-      </Container>
-    </Section>
-  );
-}
 
 export default function App() {
   return (
@@ -48,11 +33,8 @@ export default function App() {
       <EduExpSection />
       <ProjectsSection />
       <TechStackSection />
+      <ContactSection />
 
-      {/* 이후 섹션들(앵커만 우선 만들어 둠) */}
-      {sections.map((s) => (
-        <Placeholder key={s.id} id={s.id} title={s.label} />
-      ))}
       <ToastViewport />
     </>
   );

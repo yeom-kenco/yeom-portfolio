@@ -9,7 +9,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { toast } from '../hooks/useToast';
 
 export default function Hero() {
-  const upDate = '2025.09.16';
+  const upDate = '2025.09.17';
 
   return (
     <Section id="top" className="bg-surface">

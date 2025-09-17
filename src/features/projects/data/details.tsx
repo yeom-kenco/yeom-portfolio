@@ -526,7 +526,7 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       'figma',
     ],
     team: '개인 (FE 1)',
-    period: '2025.09.15 ~ 2025.09.18',
+    period: '2025.09.15 ~ 2025.09.17',
     links: [
       { type: 'github', url: 'https://github.com/yeom-kenco/yeom-portfolio.git', label: 'GitHub' },
       {
