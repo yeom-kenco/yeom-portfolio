@@ -14,6 +14,7 @@ import StickyNav from './components/nav/StickyNav';
 import EduExpSection from './sections/EduExpSection';
 import ProjectsSection from './sections/ProjectsSection';
 import 'devicon/devicon.min.css';
+import TechStackSection from './sections/TechStackSection';
 
 // 내비게이션에 사용할 섹션 정의(앵커 id + 라벨)
 const sections = [
@@ -46,6 +47,7 @@ export default function App() {
       <AboutMeSection />
       <EduExpSection />
       <ProjectsSection />
+      <TechStackSection />
 
       {/* 이후 섹션들(앵커만 우선 만들어 둠) */}
       {sections.map((s) => (
