@@ -25,16 +25,16 @@ export default function ProjectModal({
   return (
     <BaseModal isOpen={open} onClose={onClose} className="p-0">
       {!detail ? null : (
-        <div className="p-6 md:p-8">
+        <div className="p-6 md:p-12">
           {/* 큰 타이틀 */}
           <h2 className="whitespace-pre-wrap font-heading text-[clamp(22px,2.5vw,36px)] font-extrabold leading-tight text-ink">
             {detail.title}
           </h2>
 
           {/* 프로젝트 설명 */}
-          <section className="mt-8">
-            <p className="text-sm font-semibold text-ink-muted">프로젝트 설명</p>
-            <div className="mt-3 space-y-1.5 text-[clamp(14px,1.1vw,16px)] text-ink">
+          <section className="mt-10">
+            <p className="text-sm font-body text-ink-muted">프로젝트 설명</p>
+            <div className="max-w-2xl mt-3 font-bold space-y-1.5 text-[clamp(14px,1.1vw,16px)] text-ink">
               {detail.description.map((d, i) => (
                 <p key={i}>{d}</p>
               ))}
@@ -43,7 +43,7 @@ export default function ProjectModal({
 
           {/* 기술스택 */}
           <section className="mt-8">
-            <p className="text-sm font-semibold text-ink-muted">기술스택</p>
+            <p className="text-sm font-body text-ink-muted">기술스택</p>
             <div className="mt-3">
               <TechIcons stacks={detail.stacks} />
             </div>
@@ -51,14 +51,14 @@ export default function ProjectModal({
 
           {/* 메타 (참여 인원 / 기간) */}
           {(detail.team || detail.period) && (
-            <section className="mt-8 grid grid-cols-1 gap-4 text-ink md:grid-cols-2">
+            <section className="mt-8 grid grid-cols-1 gap-4 text-ink md:grid-cols-3">
               <div>
-                <p className="text-sm font-semibold text-ink-muted">참여 인원</p>
-                <p className="mt-1 text-[clamp(14px,1.1vw,16px)]">{detail.team}</p>
+                <p className="text-sm font-body text-ink-muted">참여 인원</p>
+                <p className="mt-1 font-bold text-[clamp(14px,1.1vw,16px)]">{detail.team}</p>
               </div>
               <div>
-                <p className="text-sm font-semibold text-ink-muted">기간</p>
-                <p className="mt-1 text-[clamp(14px,1.1vw,16px)]">{detail.period}</p>
+                <p className="text-sm font-body text-ink-muted">기간</p>
+                <p className="mt-1 font-bold text-[clamp(14px,1.1vw,16px)]">{detail.period}</p>
               </div>
             </section>
           )}
@@ -66,8 +66,8 @@ export default function ProjectModal({
           {/* 관련 링크 */}
           {!!detail.links?.length && (
             <section className="mt-8">
-              <p className="text-sm font-semibold text-ink-muted">관련 링크</p>
-              <div className="mt-3">
+              <p className="text-sm font-body text-ink-muted">관련 링크</p>
+              <div className="mt-3 font-bold">
                 <LinkChips links={detail.links} />
               </div>
             </section>
@@ -77,22 +77,47 @@ export default function ProjectModal({
           <div className="my-8 h-px w-full bg-[#EAEAEA]" />
 
           {/* 상세 내용 */}
+          {/* 상세 내용 */}
           <section className="mb-2">
-            <h3 className="text-[clamp(18px,1.6vw,22px)] font-extrabold text-brand-purple">
+            <h3 className="text-[clamp(18px,1.6vw,22px)] font-heading font-extrabold text-ink">
               상세 내용
             </h3>
 
             <div className="mt-4 space-y-8">
               {detail.sections.map((sec, idx) => (
                 <div key={idx}>
-                  <h4 className="text-[clamp(16px,1.4vw,20px)] font-extrabold text-brand-purple">
+                  <h4 className="text-[clamp(16px,1.4vw,20px)] font-heading font-extrabold text-brand-purple">
                     {sec.title}
                   </h4>
-                  <ul className="mt-3 list-disc space-y-1.5 pl-5 text-[clamp(14px,1.1vw,16px)] text-ink">
-                    {sec.bullets.map((b, i) => (
-                      <li key={i}>{b}</li>
-                    ))}
-                  </ul>
+
+                  {/* 2단계 리스트 지원 */}
+                  {sec.groups?.length ? (
+                    <ul className="mt-3 ml-4 space-y-3 pl-5 list-disc marker:text-ink">
+                      {sec.groups.map((g, gi) => (
+                        <li key={gi}>
+                          {/* 소제목(굵게) */}
+                          <span className="font-semibold text-ink">{g.heading}</span>
+                          {/* 하위 불릿들 */}
+                          {g.items?.length ? (
+                            <ul className="mt-2 pl-5 list-disc space-y-1.5 text-[clamp(14px,1.1vw,16px)] text-ink-muted">
+                              {g.items.map((it, ii) => (
+                                <li key={ii}>{it}</li>
+                              ))}
+                            </ul>
+                          ) : null}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    // (레거시) 단일 단계 불릿
+                    !!sec.bullets?.length && (
+                      <ul className="mt-3 ml-4 font-semibold list-disc space-y-1.5 pl-5 text-[clamp(14px,1.1vw,16px)] text-ink">
+                        {sec.bullets.map((b, i) => (
+                          <li key={i}>{b}</li>
+                        ))}
+                      </ul>
+                    )
+                  )}
                 </div>
               ))}
             </div>

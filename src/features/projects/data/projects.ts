@@ -2,7 +2,7 @@ import { Project } from '../types';
 
 export const PROJECTS: Project[] = [
   {
-    id: 'portfolio',
+    id: 'Portfolio',
     title: '포트폴리오 사이트',
     coverImg: '/images/projects/thumbnail_portfolio.webp',
     summary:
@@ -10,7 +10,7 @@ export const PROJECTS: Project[] = [
     stacks: ['react', 'typescript', 'tailwindcss', 'framer'],
   },
   {
-    id: 'itplace',
+    id: 'Itplace',
     title: '통신사 멤버십 혜택 지도',
     coverImg: '/images/projects/thumbnail_itplace.webp',
     summary:
@@ -18,7 +18,7 @@ export const PROJECTS: Project[] = [
     stacks: ['react', 'typescript', 'redux', 'kakaomap', 'gsap'],
   },
   {
-    id: 'jobthoughts',
+    id: 'Jobthoughts',
     title: '진로 탐색 & 채용 연계 서비스',
     coverImg: '/images/projects/thumbnail_jobthoughts.webp',
     summary:
@@ -26,7 +26,7 @@ export const PROJECTS: Project[] = [
     stacks: ['react', 'typescript', 'zustand', 'nivo', 'framer'],
   },
   {
-    id: 'umate',
+    id: 'Umate',
     title: '통신사 요금제 추천 AI 챗봇 및 리뷰 서비스',
     coverImg: '/images/projects/thumbnail_umate.webp',
     summary:

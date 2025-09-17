@@ -90,7 +90,7 @@ export default function BaseModal({
               ✕
             </button>
 
-            {/* 안쪽: 내용 스크롤만 여기 */}
+            {/* 안쪽: 내용 스크롤만 */}
             <div className="max-h-[calc(100dvh-6rem)] overflow-y-auto">{children}</div>
           </motion.div>
         </div>

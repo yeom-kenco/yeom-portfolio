@@ -17,15 +17,21 @@ export type ProjectLink = {
   url: string;
 };
 
+// 섹션 안에서 "소제목 + 항목들" 묶음을 표현
+export type ProjectDetailBulletGroup = {
+  heading: string; // 예: "백엔드 설계 및 인증 시스템 구현"
+  items: React.ReactNode[]; // 소제목 하위 불릿들
+};
+
 export type ProjectDetailSection = {
-  title: string; // 예: "1. 담당 역할"
-  bullets: React.ReactNode[]; // 문장/리스트(필요시 <em>, <strong> 허용)
+  title: string; // 예: "1. 담당 역할 주요 기능 구현"
+  bullets?: React.ReactNode[]; // (기존 그대로) 단일 단계 불릿
+  groups?: ProjectDetailBulletGroup[]; // ✅ 새로 추가: 소제목 그룹 배열
 };
 
 export type ProjectDetail = {
   id: string; // 카드 id와 동일
   title: string; // 큰 타이틀(2줄까지)
-  subtitle?: string; // 2줄 타이틀일 경우 줄바꿈용 서브타이틀
   description: React.ReactNode[]; // "프로젝트 설명" 단락(여러 줄)
   stacks: string[]; // devicon 키 배열 (js, ts, react 등)
   team?: string; // "참여 인원"
