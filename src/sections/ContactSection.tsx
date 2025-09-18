@@ -12,6 +12,7 @@ import tistory from '../assets/icons/tistory.svg';
  */
 export default function ContactSection() {
   const [copied, setCopied] = useState(false);
+  const year = 2025;
 
   const handleCopyEmail = async () => {
     try {
@@ -59,8 +60,8 @@ export default function ContactSection() {
   return (
     <Section
       id="contact"
-      className="py-24 md:py-28 bg-surface
-      min-h-[50vh] md:min-h-[60vh]
+      className="pt-24 pb-0 md:pt-36 md:pb-12 bg-surface
+      min-h-[75vh] md:min-h-[60vh]
       scroll-mt-28 md:scroll-mt-32"
     >
       <Container className="max-w-4xl flex flex-col items-center text-center">
@@ -80,7 +81,7 @@ export default function ContactSection() {
         </p>
 
         {/* 아이콘 리스트 */}
-        <ul className="mt-12 grid grid-cols-4 gap-8 md:gap-12 place-items-center">
+        <ul className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 place-items-center">
           {items.map((item) => (
             <li key={item.id} className="group">
               {item.onClick ? (
@@ -119,7 +120,27 @@ export default function ContactSection() {
             </li>
           ))}
         </ul>
-        <div aria-hidden className="h-20 md:h-32" />
+        {/* Footer (작은 글씨, 얇은 보더, 안전 영역 패딩) */}
+        <footer
+          className="
+            mt-36 w-full border-t border-ink/10 pt-5
+            text-[11px] md:text-xs text-ink-muted
+            pb-[env(safe-area-inset-bottom)]
+          "
+        >
+          <p>© {year} Yeom Seungah. All rights reserved.</p>
+          <p className="mt-1">
+            Built with React · Vite · Tailwind.{' '}
+            <a
+              href="https://github.com/yeom-kenco"
+              target="_blank"
+              rel="noreferrer"
+              className="underline hover:text-primary"
+            >
+              GitHub
+            </a>
+          </p>
+        </footer>
       </Container>
     </Section>
   );
