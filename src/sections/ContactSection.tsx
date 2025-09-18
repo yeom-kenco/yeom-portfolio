@@ -57,7 +57,12 @@ export default function ContactSection() {
   );
 
   return (
-    <Section id="contact" className="pt-24 pb-24 md:pt-28 md:pb-44 bg-surface">
+    <Section
+      id="contact"
+      className="py-24 md:py-28 bg-surface
+      min-h-[50vh] md:min-h-[60vh]
+      scroll-mt-28 md:scroll-mt-32"
+    >
       <Container className="max-w-4xl flex flex-col items-center text-center">
         {/* 헤더 텍스트 (원하는 문구로 수정 가능) */}
         <p className="font-heading text-brand-purple text-[15px] md:text-xl text-primary/70 font-bold tracking-wider">
@@ -114,6 +119,7 @@ export default function ContactSection() {
             </li>
           ))}
         </ul>
+        <div aria-hidden className="h-20 md:h-32" />
       </Container>
     </Section>
   );
