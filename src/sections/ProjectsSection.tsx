@@ -33,12 +33,6 @@ export default function ProjectsSection() {
   // ✅ active.id로 상세데이터 찾기 (없으면 undefined)
   const detail = useMemo(() => (active ? PROJECT_DETAILS[active.id] : undefined), [active]);
 
-  // optional: 개발 중 키 불일치 확인용
-  if (active && !detail) {
-    // eslint-disable-next-line no-console
-    console.warn(`[ProjectsSection] PROJECT_DETAILS에 '${active.id}' 키가 없습니다.`);
-  }
-
   return (
     <Section id="projects" className="bg-white">
       <Container>
