@@ -95,8 +95,8 @@ const DetailPanel = ({
     if (!targetRect) return {} as React.CSSProperties;
     const gap = 8;
     const top = targetRect.bottom + gap;
-    const left = targetRect.left + targetRect.width / 2;
-    return { top, left, transform: 'translate(-50%, 0)' } as React.CSSProperties;
+
+    return { top, transform: 'translate(-50%, 0)' } as React.CSSProperties;
   }, [targetRect]);
 
   useEffect(() => {
