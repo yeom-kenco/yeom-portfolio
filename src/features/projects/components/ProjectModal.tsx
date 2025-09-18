@@ -33,7 +33,7 @@ export default function ProjectModal({
 
           {/* 프로젝트 설명 */}
           <section className="mt-10">
-            <p className="text-sm font-body text-ink-muted">프로젝트 설명</p>
+            <p className="text-sm md:text-base font-body text-ink-muted">프로젝트 설명</p>
             <div className="max-w-2xl mt-3 font-bold space-y-1.5 text-[clamp(14px,1.1vw,16px)] text-ink">
               {detail.description.map((d, i) => (
                 <p key={i}>{d}</p>

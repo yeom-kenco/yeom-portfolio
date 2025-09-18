@@ -603,9 +603,7 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
           <>React + TypeScript: 재사용성/안정성 높은 컴포넌트 설계, 타입 기반 협업 대비</>,
           <>Vite: 빠른 HMR과 빌드 속도</>,
           <>Tailwind CSS: 디자인 토큰화와 생산성, 반응형 구현 단순화로 빠른 속도의 개발을 위함</>,
-          <>
-            Framer Motion: 자연스러운 진입·스크롤 인터랙션으로 <b>UX 강조</b>
-          </>,
+          <>Framer Motion: 자연스러운 진입·스크롤 인터랙션으로 UX 강조</>,
         ],
       },
       {

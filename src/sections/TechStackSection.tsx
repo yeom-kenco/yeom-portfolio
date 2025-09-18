@@ -155,7 +155,7 @@ export default function TechStackSection() {
 
     const onScroll = () => {
       const r = el.getBoundingClientRect();
-      // 화면에서 10px 이상 벗어나면 닫기 (임계값은 상황에 맞게 조절)
+      // 화면에서 5px 이상 벗어나면 닫기 (임계값은 상황에 맞게 조절)
       if (r.bottom < -5 || r.top > window.innerHeight + 5) {
         handleClose();
         return;

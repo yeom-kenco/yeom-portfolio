@@ -4,6 +4,11 @@ import Section from '../primitives/Section';
 import Container from '../primitives/Container';
 import Text from '../primitives/Text';
 
+// ✅ assets import
+import about1 from '../assets/images/about/about-me-1.webp';
+import about2 from '../assets/images/about/about-me-2.webp';
+import about3 from '../assets/images/about/about-me-3.webp';
+
 const containerVariants: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.18 } },
@@ -60,17 +65,17 @@ export default function AboutMeSection() {
           className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3"
         >
           <FeatureCard
-            icon="/images/about/about-me-1.webp"
+            icon={about1}
             title="아이디어를 실행으로"
             desc="기획에만 머무르지 않고, 직접 구현하는 과정을 통해 큰 성취를 느낍니다."
           />
           <FeatureCard
-            icon="/images/about/about-me-2.webp"
+            icon={about2}
             title="작은 정리의 힘"
             desc="정보를 명확히 정리 및 전달하여 팀 내 원활한 소통에 기여합니다."
           />
           <FeatureCard
-            icon="/images/about/about-me-3.webp"
+            icon={about3}
             title="즐거운 사용 흐름"
             desc="미적인 완성도와 UX에 대한 관심으로, 사용자가 편하게 느끼는 경험을 만들어가는 데 집중합니다."
           />

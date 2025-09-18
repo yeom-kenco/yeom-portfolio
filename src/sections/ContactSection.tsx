@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import Section from '../primitives/Section';
 import Container from '../primitives/Container';
+import tistory from '../assets/icons/tistory.svg';
 
 /**
  * ContactSection
@@ -42,12 +43,7 @@ export default function ContactSection() {
         href: 'https://kenco.tistory.com/',
         icon: (
           // 로컬 SVG 아이콘
-          <img
-            src="/icons/tistory.svg"
-            alt="Tistory"
-            className="w-8 h-8 md:w-9 md:h-9"
-            draggable={false}
-          />
+          <img src={tistory} alt="Tistory" className="w-8 h-8 md:w-9 md:h-9" draggable={false} />
         ),
       },
       {

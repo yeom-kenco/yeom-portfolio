@@ -7,6 +7,8 @@ import Reveal from '../motion/Reveal';
 import { MButton } from './../primitives/Button';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { toast } from '../hooks/useToast';
+import profile1 from '../assets/images/profile.webp';
+import profile2 from '../assets/images/profile.png';
 
 export default function Hero() {
   const upDate = '2025.09.17';
@@ -48,10 +50,10 @@ export default function Hero() {
               y={22}
               delay={0.08}
               className="relative z-10 w-[292px] max-w-[65%] rounded-[5rem]"
-              src="/images/profile.webp"
+              src={profile1}
               alt="프로필"
               onError={(e) => {
-                e.currentTarget.src = '/images/profile.png';
+                e.currentTarget.src = profile2;
               }}
             />
           </div>

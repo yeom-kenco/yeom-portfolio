@@ -1,3 +1,5 @@
+import gsap from '../../../assets/icons/gsap.png';
+
 type Props = {
   stacks: string[];
   showLabel?: boolean; // 기본값 true
@@ -37,8 +39,8 @@ const ICONS: Record<string, IconDef> = {
   git: { name: 'Git', slug: 'git', variant: 'original' },
   figma: { name: 'Figma', slug: 'figma', variant: 'original' },
 
-  // ✅ 필요시 로컬 SVG 추가 (/public/icons/*.svg)
-  gsap: { name: 'GSAP', customSrc: '/icons/gsap.png' },
+  // ✅ 필요시 로컬 SVG 추가
+  gsap: { name: 'GSAP', customSrc: gsap },
 };
 
 function getIconSrc(key: string): { src?: string; name: string } {

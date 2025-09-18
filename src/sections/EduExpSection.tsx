@@ -4,6 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Section from '../primitives/Section';
 import Container from '../primitives/Container';
 
+import sqldCert from '../assets/images/cert/sqld-cert.webp';
+import sqldScore from '../assets/images/cert/sqld-score.webp';
+import opicCert from '../assets/images/cert/opic-cert.webp';
+import ipeCert from '../assets/images/cert/ipe-cert.webp';
+import ipeScore from '../assets/images/cert/ipe-score.webp';
+import ipeScore2 from '../assets/images/cert/ipe-score-2.webp';
+
 /* -------------------- Types -------------------- */
 type TimelineItem = {
   date: string;
@@ -99,23 +106,19 @@ const certificates: CertificateItem[] = [
   {
     date: '2024.06.21',
     name: 'SQLD (SQL Developer)',
-    images: ['/images/cert/sqld-cert.webp', '/images/cert/sqld-score.webp'],
+    images: [sqldCert, sqldScore],
     detailsLinkLabel: '취득 정보 자세히 보기',
   },
   {
     date: '2024.09.13',
     name: 'OPIc / 영어 IM2',
-    images: ['/images/cert/opic-cert.webp'],
+    images: [opicCert],
     detailsLinkLabel: '취득 정보 자세히 보기',
   },
   {
     date: '2024.10.20',
     name: '정보처리기사',
-    images: [
-      '/images/cert/ipe-cert.webp',
-      '/images/cert/ipe-score.webp',
-      '/images/cert/ipe-score-2.webp',
-    ],
+    images: [ipeCert, ipeScore, ipeScore2],
     detailsLinkLabel: '취득 정보 자세히 보기',
   },
 ];
