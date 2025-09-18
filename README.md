@@ -49,3 +49,15 @@
 * 피드백 폼: [https://forms.gle/UBt5DXMtG2pHMC8P6](https://forms.gle/UBt5DXMtG2pHMC8P6)
 
 ---
+
+## 디자인 시안 미리보기
+
+<img width="1440" height="1024" alt="section - 1" src="https://github.com/user-attachments/assets/4b6c44c4-09ae-4304-aeea-ac69801a520c" />
+<img width="1440" height="1024" alt="section - 2" src="https://github.com/user-attachments/assets/597febdb-51e9-467e-afb6-6917aa7670d8" />
+<img width="1440" height="2945" alt="section - 3" src="https://github.com/user-attachments/assets/c9628676-ecbc-4820-80af-17317fd7cde8" />
+<img width="1440" height="1318" alt="section- 4" src="https://github.com/user-attachments/assets/dfd84695-aa4a-4b00-8bc1-9fdab917afa3" />
+<img width="1440" height="1050" alt="section- 4_ 프로젝트 모달" src="https://github.com/user-attachments/assets/fad282ca-e59d-4f0c-9900-17b8359cc445" />
+<img width="1440" height="1024" alt="section - 5" src="https://github.com/user-attachments/assets/e9c382dd-4c0f-4d4f-97d4-6d01df52f173" />
+<img width="1440" height="769" alt="section - 6" src="https://github.com/user-attachments/assets/ed499af9-0f04-4288-bd74-4afb9d518b55" />
+
+
