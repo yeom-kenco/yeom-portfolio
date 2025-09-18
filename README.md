@@ -8,6 +8,12 @@
 
 ---
 
+## 라이선스
+
+개인 포트폴리오 용도. 별도 고지 없는 리소스는 사전 동의 없이 상업적 재사용을 금합니다.
+
+---
+
 ## 주요 기능
 
 * **섹션 단위 레이아웃**
@@ -29,24 +35,15 @@
 ## 기술 스택
 
 * **Frontend**: React 18, TypeScript, Vite
-* **UI**: Tailwind CSS (유틸리티 퍼스트), bootstrap-icons
+* **UI**: Tailwind CSS (유틸리티 퍼스트), bootstrap-icons, devicon
 * **Animation**: framer-motion
-* **Routing**: React Router (사용 시)
 * **코드 품질**: ESLint, Prettier
-
-> 디자인 시스템 성격의 프리미티브 컴포넌트(`Section`, `Container`, `Heading`, `Text`)를 기반으로 화면을 구성했습니다.
-
----
-
-## 라이선스
-
-개인 포트폴리오 용도. 별도 고지 없는 리소스는 사전 동의 없이 상업적 재사용을 금합니다.
 
 ---
 
 ## 연락처
 
-* Email: **[ysa2780@naver.com](mailto:ysa2780@naver.com)**
+* Email: [ysa2780@naver.com](mailto:ysa2780@naver.com)
 * GitHub: [https://github.com/yeom-kenco](https://github.com/yeom-kenco)
 * Tistory: [https://kenco.tistory.com/](https://kenco.tistory.com/)
 * 피드백 폼: [https://forms.gle/UBt5DXMtG2pHMC8P6](https://forms.gle/UBt5DXMtG2pHMC8P6)
