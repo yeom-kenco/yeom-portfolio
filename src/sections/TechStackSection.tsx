@@ -28,7 +28,7 @@ const TECH_GROUPS: TechGroup[] = [
   {
     id: 'react',
     label: 'React',
-    desc: '컴포넌트 기반 구조로 페이지를 구성하고, props와 state를 통해 상태 관리를 할 수 있습니다. Hooks, Router, lazy loading 등 다양한 기능을 적용할 수 있습니다.',
+    desc: '컴포넌트 기반 구조로 페이지를 구성하고, props와 state를 통해 상태 관리를 할 수 있습니다. Hooks, Router등 다양한 기능을 적용할 수 있습니다.',
     stacks: ['react'],
   },
   {
@@ -94,8 +94,8 @@ const DetailPanel = ({
   const style = useMemo(() => {
     if (!targetRect) return {} as React.CSSProperties;
     const gap = 8;
-    const top = targetRect.bottom + window.scrollY + gap;
-    const left = targetRect.left + window.scrollX + targetRect.width / 2;
+    const top = targetRect.bottom + gap;
+    const left = targetRect.left + targetRect.width / 2;
     return { top, left, transform: 'translate(-50%, 0)' } as React.CSSProperties;
   }, [targetRect]);
 
@@ -107,7 +107,7 @@ const DetailPanel = ({
 
   return (
     <motion.div
-      className="absolute z-40 max-w-sm w-[92vw] rounded-lg bg-ink text-surface p-4 shadow-elev"
+      className="fixed z-40 max-w-sm w-[92vw] rounded-lg bg-ink text-surface p-4 shadow-elev"
       style={style}
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
@@ -137,27 +137,43 @@ export default function TechStackSection() {
 
   const activeGroup = useMemo(() => TECH_GROUPS.find((g) => g.id === activeId) || null, [activeId]);
 
-  const readRect = useCallback(() => {
-    if (!activeId) return setActiveRect(null);
-    const el = mapRef.current[activeId];
-    if (!el) return setActiveRect(null);
-    setActiveRect(el.getBoundingClientRect());
-  }, [activeId]);
-
-  useLayoutEffect(() => {
-    readRect();
-    window.addEventListener('resize', readRect);
-    window.addEventListener('scroll', readRect, { passive: true });
-    return () => {
-      window.removeEventListener('resize', readRect);
-      window.removeEventListener('scroll', readRect);
-    };
-  }, [readRect]);
-
   const handleClose = useCallback(() => {
     setActiveId(null);
     setActiveRect(null);
   }, []);
+
+  useLayoutEffect(() => {
+    if (!activeId) return;
+
+    const el = mapRef.current[activeId];
+    if (!el) return;
+
+    const updateRect = () => setActiveRect(el.getBoundingClientRect());
+
+    // 최초 계산
+    updateRect();
+
+    const onScroll = () => {
+      const r = el.getBoundingClientRect();
+      // 화면에서 10px 이상 벗어나면 닫기 (임계값은 상황에 맞게 조절)
+      if (r.bottom < -5 || r.top > window.innerHeight + 5) {
+        handleClose();
+        return;
+      }
+      // 아직 보이면 위치만 갱신
+      requestAnimationFrame(updateRect);
+    };
+
+    const onResize = () => requestAnimationFrame(updateRect);
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+    };
+  }, [activeId, handleClose]);
 
   return (
     <Section id="skills" className="bg-surface">
@@ -166,7 +182,7 @@ export default function TechStackSection() {
           기술 스택 및 도구
         </h2>
         <p className="mt-3 font-heading text-[clamp(18px,1vw,22px)] text-center text-ink">
-          아래의 기술을 사용해봤습니다. <br /> 클릭해보세요!
+          아래의 기술과 도구를 사용할 수 있습니다. <br /> 클릭해보세요!
         </p>
 
         {/* 카드 영역만 블러 처리 */}
@@ -188,9 +204,16 @@ export default function TechStackSection() {
                 }`}
                 onClick={(e) => {
                   e.stopPropagation();
+
+                  const el = e.currentTarget; // 바로 클릭한 버튼
+                  // 1) 즉시 좌표 세팅 → 첫 프레임에 패널 뜸
+                  setActiveRect(el.getBoundingClientRect());
+                  // 2) 상태 업데이트
                   setActiveId(group.id);
-                  // 다음 프레임에서 위치 읽기 (정확한 위치 계산)
-                  requestAnimationFrame(readRect);
+                  // 3) 다음 프레임에서 한 번 더 보정(애니메이션/레이아웃 반영 후)
+                  requestAnimationFrame(() => {
+                    setActiveRect(el.getBoundingClientRect());
+                  });
                 }}
               >
                 <TechIcons stacks={group.stacks} showLabel={false} />
