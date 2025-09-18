@@ -35,18 +35,15 @@
 ## 기술 스택
 
 * **Frontend**: React 18, TypeScript, Vite
-* **UI**: Tailwind CSS (유틸리티 퍼스트), bootstrap-icons
+* **UI**: Tailwind CSS (유틸리티 퍼스트), bootstrap-icons, devicon
 * **Animation**: framer-motion
-* **Routing**: React Router (사용 시)
 * **코드 품질**: ESLint, Prettier
-
-> 디자인 시스템 성격의 프리미티브 컴포넌트(`Section`, `Container`, `Heading`, `Text`)를 기반으로 화면을 구성했습니다.
 
 ---
 
 ## 연락처
 
-* Email: **[ysa2780@naver.com](mailto:ysa2780@naver.com)**
+* Email: [ysa2780@naver.com](mailto:ysa2780@naver.com)
 * GitHub: [https://github.com/yeom-kenco](https://github.com/yeom-kenco)
 * Tistory: [https://kenco.tistory.com/](https://kenco.tistory.com/)
 * 피드백 폼: [https://forms.gle/UBt5DXMtG2pHMC8P6](https://forms.gle/UBt5DXMtG2pHMC8P6)
