@@ -53,15 +53,19 @@ const eduAndExperience: TimelineItem[] = [
     title: '[부스트 코스] Connect On: 테크와 나를 잇다 (업무자동화)',
     subtitle: '네이버 커넥트 재단 부스트 코스 생성형 AI를 활용한 업무자동화 과정 수료',
     bullets: [
-      'ChatGPT, KreaAI 등 최신 생성형 AI 툴을 활용해 데이터 분석·업무 자동화·웹앱 프로토타입 제작 실습',
+      'ChatGPT, KreaAI, Genspark 등 최신 생성형 AI 툴을 활용해 데이터 분석·업무 자동화·웹앱 프로토타입 제작 실습',
       'AI를 활용한 생산성 향상과 프론트엔드 개발 적용 경험',
     ],
   },
   {
     date: '2025.09',
     title: '[kakao x goorm] 구름톤 in JEJU 15기',
-    subtitle: '개발자/디자이너/기획자가 모여 3박 4일간 진행되는 해커톤 참여 예정',
-    bullets: ['수료 후 작성 예정입니다.'],
+    subtitle: '개발자/디자이너/기획자가 모여 3박 4일간 진행되는 해커톤 참여',
+    bullets: [
+      '"제주도민의 삶을 바꾸는 생활 인프라 개선"을 주제로 한 서비스 제작',
+      '기획자, 디자이너, 백엔드 개발자와 협업 경험',
+      'Vapor 디자인 시스템을 활용한 UI 개발 경험',
+    ],
   },
 ];
 
