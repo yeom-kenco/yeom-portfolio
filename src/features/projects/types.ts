@@ -9,7 +9,7 @@ export type Project = {
   // 상세 본문은 2단계에서 구조화해서 추가
 };
 
-export type ProjectLinkType = 'github' | 'demo' | 'video' | 'slides' | 'blog' | 'notion';
+export type ProjectLinkType = 'github' | 'site' | 'demo' | 'video' | 'slides' | 'blog' | 'notion';
 
 export type ProjectLink = {
   type: ProjectLinkType;

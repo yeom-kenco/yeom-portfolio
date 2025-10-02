@@ -5,6 +5,7 @@ type Props = { links?: ProjectLink[] };
 
 const DEFAULT_LABEL: Record<ProjectLinkType, string> = {
   github: 'GitHub',
+  site: '사이트',
   demo: '시연 영상',
   video: '발표 영상',
   slides: '발표 자료',
@@ -25,6 +26,11 @@ function Icon({ type }: { type: ProjectLinkType }) {
 
   const map: Record<ProjectLinkType, React.ReactNode> = {
     github: null, // 위에서 처리됨
+    site: (
+      <span aria-hidden className="text-base leading-none">
+        🔗
+      </span>
+    ),
     demo: (
       <span aria-hidden className="text-base leading-none">
         🎥

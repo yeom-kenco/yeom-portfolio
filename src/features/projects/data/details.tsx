@@ -247,6 +247,7 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
     period: '2025.05.07 ~ 2025.05.20 (14일)',
     links: [
       { type: 'github', url: 'https://github.com/yeom-kenco/JobThoughts' },
+      { type: 'site', url: 'https://job-thoughts-client.vercel.app/' },
       { type: 'demo', url: 'https://tv.kakao.com/v/455335159' },
       {
         type: 'slides',
@@ -383,6 +384,7 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
     period: '2025.06.30 ~ 2025.08.07',
     links: [
       { type: 'github', url: 'https://github.com/ureca-itPlace' },
+      { type: 'site', url: 'https://www.itplace.click/' },
       { type: 'demo', url: 'https://youtu.be/TE7qdcYTI7o?si=fpPM9oXz8EK_RQg8' },
       {
         type: 'slides',
@@ -466,13 +468,7 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
           {
             heading: '성과',
             items: [
-              <>
-                프로젝트의 최종 배포 성공 및 버그 없는 안정적인 결과물 완성
-                <br />
-                <span className="text-brand-purple">
-                  * 현재는 비용 문제로 배포 사이트 접속이 불가능합니다.
-                </span>
-              </>,
+              <>프로젝트의 최종 배포 성공 및 버그 없는 안정적인 결과물 완성</>,
               <>UI/UX 인터랙션에서 이용자 경험에 대한 긍정적 피드백 획득 (모달, 토스트 알림 등)</>,
               <>다양한 환경(모바일 & 데스크탑)에서도 안정적인 속도와 UI 제공</>,
               <>
@@ -572,10 +568,6 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
             heading: '공용 모달',
             items: [
               <>
-                라운드 깨짐 해결: 바깥 래퍼 <b>rounded + overflow-hidden</b>, 내부 컨텐츠에만{' '}
-                <b>overflow-y-auto</b>
-              </>,
-              <>
                 배경 스크롤 락, <b>position: fixed</b> & 스크롤바 폭 보정으로 레이아웃 흔들림 방지
               </>,
               <>
@@ -608,7 +600,7 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       },
       {
         title: '3. 다음 계획',
-        bullets: [<>Next.js 도입으로 SEO/OG 최적화 및 블로그(콘텐츠 레이어) 추가</>, <>다크모드</>],
+        bullets: [<>Next.js 도입으로 SEO/OG 최적화</>, <>다크모드</>],
       },
     ],
   },
