@@ -77,7 +77,6 @@ export default function ProjectModal({
           <div className="my-8 h-px w-full bg-[#EAEAEA]" />
 
           {/* 상세 내용 */}
-          {/* 상세 내용 */}
           <section className="mb-2">
             <h3 className="text-[clamp(18px,1.6vw,22px)] font-heading font-extrabold text-ink">
               상세 내용

@@ -1,4 +1,5 @@
 import gsap from '../../../assets/icons/gsap.png';
+import vapor from '../../../assets/icons/vapor.png';
 
 type Props = {
   stacks: string[];
@@ -41,6 +42,7 @@ const ICONS: Record<string, IconDef> = {
 
   // ✅ 필요시 로컬 SVG 추가
   gsap: { name: 'GSAP', customSrc: gsap },
+  vapor: { name: 'Vapor(GDS)', customSrc: vapor },
 };
 
 function getIconSrc(key: string): { src?: string; name: string } {

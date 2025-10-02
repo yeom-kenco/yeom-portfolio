@@ -604,4 +604,45 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       },
     ],
   },
+  Donghang: {
+    id: 'Donghang',
+    title: '의료취약계층 셔틀 플랫폼',
+    description: [
+      <>
+        #제주 #클라우드 #제주도민의 삶을 바꾸는 생활 인프라 개선
+        <br />
+        해커톤에서 주어진 세가지 키워드에 맞춰, ‘제주의 외곽과 중심을 잇는 새로운 의료 인프라’를
+        구축
+      </>,
+    ],
+    stacks: [
+      'typescript',
+      'react',
+      'vite',
+      'tailwind',
+      'vapor',
+      'zustand',
+      'framermotion',
+      'github',
+      'git',
+      'figma',
+    ],
+    team: '5명 (FE 2, BE 1, 기획 1, 디자인 1)',
+    period: '2025.09.24 ~ 2025.09.26 (3일)',
+    links: [
+      { type: 'github', url: 'https://github.com/jeju-goormthon', label: 'GitHub' },
+      { type: 'video', url: 'https://tv.kakao.com/v/458357623', label: '시연영상' },
+      { type: 'site', url: 'https://donghang.klr.kr/', label: '배포사이트' },
+      {
+        type: 'notion',
+        url: 'https://leestana01.notion.site/278704f432e080888ed5f6e8de64660e?pvs=143',
+        label: '팀노션',
+      },
+    ],
+    sections: [
+      {
+        title: '해당 프로젝트는 아직 작성중입니다.',
+      },
+    ],
+  },
 };

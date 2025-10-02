@@ -1,6 +1,7 @@
 import { Project } from '../types';
 
 // ✅ 이미지 import
+import donghangThumb from '../../../assets/images/projects/thumbnail_donghang.webp';
 import portfolioThumb from '../../../assets/images/projects/thumbnail_portfolio.webp';
 import itplaceThumb from '../../../assets/images/projects/thumbnail_itplace.webp';
 import jobthoughtsThumb from '../../../assets/images/projects/thumbnail_jobthoughts.webp';
@@ -8,6 +9,14 @@ import umateThumb from '../../../assets/images/projects/thumbnail_umate.webp';
 import netflixThumb from '../../../assets/images/projects/thumbnail_netflix.webp';
 
 export const PROJECTS: Project[] = [
+  {
+    id: 'Donghang',
+    title: '의료취약계층 셔틀 플랫폼',
+    coverImg: donghangThumb,
+    summary:
+      '제주 지역의 의료취약계층이 병원에 쉽게 접근할 수 있도록 셔틀 서비스를 제공하는 플랫폼',
+    stacks: ['react', 'typescript', 'tailwindcss', 'framer'],
+  },
   {
     id: 'Portfolio',
     title: '포트폴리오 사이트',
