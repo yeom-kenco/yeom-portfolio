@@ -94,7 +94,18 @@ export default function ContactSection() {
                     <span className="flex text-ink size-16 md:size-18 items-center justify-center rounded-full backdrop-blur transition-transform duration-200 group-hover:-translate-y-0.5 group-focus-visible:-translate-y-0.5 text-inherit">
                       {item.icon}
                     </span>
-                    <span className="pointer-events-none absolute left-1/2 top-[calc(100%+0.4rem)] -translate-x-1/2 whitespace-nowrap text-[11px] md:text-xs text-primary/70 opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:opacity-100 group-focus-visible:translate-y-0">
+                    <span
+                      className="
+                        absolute left-1/2 top-[calc(100%+0.4rem)] -translate-x-1/2 whitespace-nowrap
+                        text-[11px] md:text-xs text-primary/70
+                        /* 모바일: 항상 보임 */
+                        opacity-100 translate-y-0
+                        /* 데스크톱: hover/focus 때만 보임 */
+                        md:opacity-0 md:translate-y-1 md:pointer-events-none
+                        md:transition-all md:duration-200
+                        md:group-hover:opacity-100 md:group-hover:translate-y-0
+                        md:group-focus-visible:opacity-100 md:group-focus-visible:translate-y-0"
+                    >
                       {item.label}
                     </span>
                   </span>
@@ -111,7 +122,18 @@ export default function ContactSection() {
                     <span className="flex size-16 text-ink md:size-18 items-center justify-center rounded-full backdrop-blur transition-transform duration-200 group-hover:-translate-y-0.5 group-focus-visible:-translate-y-0.5 text-inherit">
                       {item.icon}
                     </span>
-                    <span className="pointer-events-none absolute left-1/2 top-[calc(100%+0.4rem)] -translate-x-1/2 whitespace-nowrap text-[11px] md:text-xs text-primary/70 opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:opacity-100 group-focus-visible:translate-y-0">
+                    <span
+                      className="
+                        absolute left-1/2 top-[calc(100%+0.4rem)] -translate-x-1/2 whitespace-nowrap
+                        text-[11px] md:text-xs text-primary/70
+                        /* 모바일: 항상 보임 */
+                        opacity-100 translate-y-0
+                        /* 데스크톱: hover/focus 때만 보임 */
+                        md:opacity-0 md:translate-y-1 md:pointer-events-none
+                        md:transition-all md:duration-200
+                        md:group-hover:opacity-100 md:group-hover:translate-y-0
+                        md:group-focus-visible:opacity-100 md:group-focus-visible:translate-y-0"
+                    >
                       {item.label}
                     </span>
                   </span>
