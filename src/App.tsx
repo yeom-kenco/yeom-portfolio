@@ -15,9 +15,9 @@ import ContactSection from './sections/ContactSection';
 
 // 내비게이션에 사용할 섹션 정의(앵커 id + 라벨)
 const sections = [
-  { id: 'exp', label: '교육 및 경험' },
   { id: 'projects', label: '프로젝트' },
   { id: 'skills', label: '기술' },
+  { id: 'exp', label: '교육 및 경험' },
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -30,9 +30,9 @@ export default function App() {
       {/* 섹션-1: 도입부(히어로) */}
       <Hero />
       <AboutMeSection />
-      <EduExpSection />
       <ProjectsSection />
       <TechStackSection />
+      <EduExpSection />
       <ContactSection />
 
       <ToastViewport />
