@@ -61,7 +61,7 @@ export default function ContactSection() {
       id="contact"
       className="pt-24 pb-0 md:pt-36 md:pb-12 bg-surface
       min-h-[75vh] md:min-h-[60vh]
-      scroll-mt-28 md:scroll-mt-32"
+      scroll-mt-28"
     >
       <Container className="max-w-4xl flex flex-col items-center text-center">
         {/* 헤더 텍스트 (원하는 문구로 수정 가능) */}

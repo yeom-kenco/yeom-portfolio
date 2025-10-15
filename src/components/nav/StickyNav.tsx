@@ -1,110 +1,89 @@
-/**
- * StickyNav (single fixed instance)
- * - Hero에서 스크롤을 조금 내리면 화면 아래쪽(y≈180px)에서 서서히 나타남
- * - 스크롤하면서 위로 이동하다가 pin 섹션에서 상단(top-4)에 고정된 상태(y=0)
- * - DOM에 하나만 존재 (중복 네비 제거)
- */
+// src/components/nav/StickyNav.tsx
 import Container from '../../primitives/Container';
-import { useScrollSpy } from '../../hooks/useScrollSpy';
-import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
-import { useEventListener } from './../../hooks/useEventListener';
 
 type SectionRef = { id: string; label: string };
-
-const clamp = (n: number, min: number, max: number) => Math.min(Math.max(n, min), max);
-const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
 export default function StickyNav({
   sections,
   appearWithinId = 'top',
-  pinAtId = 'about',
-  topInset = 36,
-  appearTopRatioMd = 0.9, // md 이상(>=768px)
-  appearTopRatioSm = 0.9, // 모바일(<768px)
+  thresholdPx = 200, // 활성 판정 기준선(뷰포트 상단에서 px)
+  appearLeadPx = 400, // 네비가 더 빨리 나타나게(클수록 빨리)
 }: {
   sections: SectionRef[];
   appearWithinId?: string;
-  pinAtId?: string;
-  topInset?: number;
-  appearTopRatioMd?: number;
-  appearTopRatioSm?: number;
+  thresholdPx?: number;
+  appearLeadPx?: number;
 }) {
-  const activeId = useScrollSpy(sections.map((s) => s.id));
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeId, setActiveId] = useState<string>('');
 
-  // 현재 뷰포트가 md 이상인지
-  const isMd = () => window.matchMedia('(min-width: 768px)').matches;
-  const currentRatio = () => (isMd() ? appearTopRatioMd : appearTopRatioSm);
+  useEffect(() => {
+    const handleScroll = () => {
+      // 보임 토글 (조금 빨리 등장시키려면 appearLeadPx 키우기)
+      const appearEl = document.getElementById(appearWithinId);
+      if (appearEl) {
+        const appearBottom = appearEl.offsetTop + appearEl.offsetHeight;
+        setIsVisible(window.scrollY > appearBottom - appearLeadPx);
+      }
 
-  // 초기 top은 현재 뷰포트 기준으로 계산
-  const [top, setTop] = useState<number>(() => Math.round(window.innerHeight * currentRatio()));
-  const [opacity, setOpacity] = useState<number>(0);
+      // --- 활성 섹션 판정 ---
+      // 1) 기준선을 지난 섹션들 중 '마지막'을 잡는다
+      let current = '';
+      for (const { id } of sections) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top;
+        if (top - thresholdPx <= 0) current = id;
+        else break;
+      }
 
-  const recompute = () => {
-    const appearEl = document.getElementById(appearWithinId);
-    const pinEl =
-      document.getElementById(pinAtId) ||
-      document.getElementById('about') ||
-      document.getElementById('exp') ||
-      (sections.length ? document.getElementById(sections[0].id) : null);
-    if (!appearEl || !pinEl) return;
+      // 2) 못 찾은 경우(=첫 섹션 전 구간)엔, 기준선이 어떤 섹션 rect 내부에 있는지도 체크
+      if (!current) {
+        for (const { id } of sections) {
+          const el = document.getElementById(id);
+          if (!el) continue;
+          const r = el.getBoundingClientRect();
+          if (r.top <= thresholdPx && r.bottom >= thresholdPx) {
+            current = id;
+            break;
+          }
+        }
+      }
 
-    const heroTop = appearEl.offsetTop;
-    const heroH = appearEl.offsetHeight;
-    const pinTop = pinEl.offsetTop;
-    const scroll = window.scrollY;
+      setActiveId(current); // 못 찾으면 '' → 아무 것도 활성화 안 함
+    };
 
-    const appearStart = heroTop + heroH * 0.0; // 필요하면 0.2 등으로 조절
-    const appearEnd = pinTop - topInset;
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, [sections, appearWithinId, thresholdPx, appearLeadPx]);
 
-    const t = clamp((scroll - appearStart) / Math.max(appearEnd - appearStart, 1), 0, 1);
-
-    // ✅ 뷰포트 폭에 따라 다른 ratio 사용
-    const appearTopPx = Math.round(window.innerHeight * currentRatio());
-    setTop(lerp(appearTopPx, topInset, t));
-
-    setOpacity(lerp(0, 1, clamp((scroll - appearStart) / 120, 0, 1)));
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
-  useEventListener(window, 'scroll', recompute, { passive: true });
-  useEventListener(window, 'resize', recompute);
-  useEventListener(window, 'load', recompute);
-  useEffect(() => {
-    const raf = requestAnimationFrame(recompute);
-    const t = setTimeout(recompute, 0);
-    return () => {
-      cancelAnimationFrame(raf);
-      clearTimeout(t);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    appearWithinId,
-    pinAtId,
-    sections.map((s) => s.id).join(','),
-    topInset,
-    appearTopRatioMd,
-    appearTopRatioSm,
-  ]);
-
-  // ●●● 클릭 → about(폴백 포함)
   const scrollToAbout = () => {
-    const target =
-      document.getElementById('about') ||
-      (sections.length ? document.getElementById(sections[0].id) : null);
-    target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    (
+      document.getElementById('about') || document.getElementById(sections[0]?.id || '')
+    )?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
-    <motion.nav
-      style={{ top, opacity }}
-      className="fixed inset-x-0 z-40" // 수평 가운데
-      aria-hidden={opacity < 0.02}
+    <nav
+      className={clsx(
+        'fixed inset-x-0 top-8 z-40 transition-all duration-500',
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-3 pointer-events-none'
+      )}
+      aria-hidden={!isVisible}
     >
       <Container>
-        {/* 알약 네비 */}
-        <div className="flex items-center gap-3 rounded-full bg-surface/1 backdrop-blur px-4 py-3 shadow-brand-glow">
-          {/* 메뉴: 점 오른쪽 영역을 가득 차게 하고 내부는 균등 정렬 */}
+        <div className="flex items-center gap-3 rounded-full bg-surface/1 backdrop-blur px-4 py-2 shadow-brand-glow">
           <nav className="flex-1">
             <ul className="flex w-full items-center justify-evenly text-sm max-[380px]:text-xs md:text-lg">
               <button
@@ -117,23 +96,25 @@ export default function StickyNav({
                 <span className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-full bg-brand-lavender" />
                 <span className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-full bg-brand-purple" />
               </button>
+
               {sections.map((s) => (
                 <li key={s.id}>
-                  <a
-                    href={`#${s.id}`}
+                  <button
+                    type="button"
+                    onClick={() => scrollTo(s.id)}
                     className={clsx(
                       'px-2 md:px-4 py-2 rounded-full font-heading font-medium text-ink hover:text-brand-purple transition',
                       activeId === s.id && 'text-white font-bold bg-brand-lavender'
                     )}
                   >
                     {s.label}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
           </nav>
         </div>
       </Container>
-    </motion.nav>
+    </nav>
   );
 }

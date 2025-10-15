@@ -25,7 +25,7 @@ export default function App() {
   return (
     <>
       {/* 스크롤 이후 등장·고정되는 네비게이션 */}
-      <StickyNav sections={sections} appearWithinId="top" pinAtId="about" />
+      <StickyNav sections={sections} />
 
       {/* 섹션-1: 도입부(히어로) */}
       <Hero />

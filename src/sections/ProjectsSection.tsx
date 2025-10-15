@@ -34,7 +34,7 @@ export default function ProjectsSection() {
   const detail = useMemo(() => (active ? PROJECT_DETAILS[active.id] : undefined), [active]);
 
   return (
-    <Section id="projects" className="bg-white">
+    <Section id="projects" className="bg-surface">
       <Container>
         <div className="mx-auto max-w-5xl px-6">
           {/* 섹션 타이틀 & 설명: EduExpSection과 통일 */}
