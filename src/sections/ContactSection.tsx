@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-import Section from '../primitives/Section';
 import Container from '../primitives/Container';
 import tistory from '../assets/icons/tistory.svg';
 
@@ -58,7 +57,7 @@ export default function ContactSection() {
   );
 
   return (
-    <Section
+    <section
       id="contact"
       className="pt-24 pb-0 md:pt-36 md:pb-12 bg-surface
       min-h-[75vh] md:min-h-[60vh]
@@ -164,6 +163,6 @@ export default function ContactSection() {
           </p>
         </footer>
       </Container>
-    </Section>
+    </section>
   );
 }
