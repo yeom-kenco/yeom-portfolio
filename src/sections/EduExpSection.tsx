@@ -53,6 +53,7 @@ const eduAndExperience: TimelineItem[] = [
     title: '[부스트 코스] Connect On: 테크와 나를 잇다 (업무자동화)',
     subtitle: '네이버 커넥트 재단 부스트 코스 생성형 AI를 활용한 업무자동화 과정 수료',
     bullets: [
+      '우수 학습자 선정',
       'ChatGPT, KreaAI, Genspark 등 최신 생성형 AI 툴을 활용해 데이터 분석·업무 자동화·웹앱 프로토타입 제작 실습',
       'AI를 활용한 생산성 향상과 프론트엔드 개발 적용 경험',
     ],
