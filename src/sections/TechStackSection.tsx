@@ -64,7 +64,7 @@ const TECH_GROUPS: TechGroup[] = [
   {
     id: 'figma',
     label: 'Figma',
-    desc: 'UI/UX 설계안을 기반으로 컴포넌트를 구조화하며, 프로토타입을 제작해 본 경험이 있습니다.',
+    desc: '피그마로 프로토타입을 제작할 수 있으며, UI/UX 설계안을 기반으로 컴포넌트를 구조화합니다.',
     stacks: ['figma'],
   },
   {
