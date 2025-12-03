@@ -82,21 +82,23 @@ export default function ProjectModal({
               상세 내용
             </h3>
 
+            {/* 번호가 붙는 하위 섹션들(1., 2., 3. ...)을 순서대로 출력 */}
             <div className="mt-4 space-y-8">
               {detail.sections.map((sec, idx) => (
                 <div key={idx}>
+                  {/* 하위 섹션 제목: 예) '1. 프로젝트 개요' */}
                   <h4 className="text-[clamp(16px,1.4vw,20px)] font-heading font-extrabold text-brand-purple">
                     {sec.title}
                   </h4>
 
-                  {/* 2단계 리스트 지원 */}
+                  {/* 케이스 1: "그룹 기반(2단계 목록)" */}
                   {sec.groups?.length ? (
                     <ul className="mt-3 ml-4 space-y-3 pl-5 list-disc marker:text-ink">
                       {sec.groups.map((g, gi) => (
                         <li key={gi}>
                           {/* 소제목(굵게) */}
                           <span className="font-semibold text-ink">{g.heading}</span>
-                          {/* 하위 불릿들 */}
+                          {/* 소제목의 하위 불릿들 */}
                           {g.items?.length ? (
                             <ul className="mt-2 pl-5 list-disc space-y-1.5 text-[clamp(14px,1.1vw,16px)] text-ink-muted">
                               {g.items.map((it, ii) => (
@@ -108,7 +110,7 @@ export default function ProjectModal({
                       ))}
                     </ul>
                   ) : (
-                    // (레거시) 단일 단계 불릿
+                    /* 케이스 2: "단일 불릿 목록" (groups가 없고 bullets가 있을 때) */
                     !!sec.bullets?.length && (
                       <ul className="mt-3 ml-4 font-semibold list-disc space-y-1.5 pl-5 text-[clamp(14px,1.1vw,16px)] text-ink">
                         {sec.bullets.map((b, i) => (
