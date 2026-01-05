@@ -4,7 +4,7 @@ import Section from '../primitives/Section';
 import Container from '../primitives/Container';
 import Text from '../primitives/Text';
 
-// ✅ assets import
+// assets import
 import about1 from '../assets/images/about/about-me-1.webp';
 import about2 from '../assets/images/about/about-me-2.webp';
 import about3 from '../assets/images/about/about-me-3.webp';
@@ -43,7 +43,7 @@ export default function AboutMeSection() {
           섬세한 UI/UX 감각과 명확한 문서화로 팀의 속도와 품질을 끌어올립니다.
         </p>
         <Text className="text-[clamp(14px,1vw,18px)] mx-auto mt-4 max-w-sm md:max-w-none text-center">
-          경영정보학과에서 사용자 중심의 시각과 다양한 프로젝트를 통해 협업 능력을 쌓았습니다.
+          경영정보학과에서 다양한 프로젝트를 통해 사용자 중심의 시각과 협업 능력을 길렀습니다.
           <br />
           <span className="hl-line">
             기획과 디자인, 개발 전 과정을 직접 경험하며 구현할 수 있는 실행력
