@@ -646,9 +646,9 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       { type: 'video', url: 'https://tv.kakao.com/v/458357623', label: '시연영상' },
       { type: 'site', url: 'https://donghang.klr.kr/', label: '배포사이트' },
       {
-        type: 'notion',
-        url: 'https://leestana01.notion.site/278704f432e080888ed5f6e8de64660e?pvs=143',
-        label: '팀노션',
+        type: 'slides',
+        url: 'https://9oormthon.goorm.io/28d4e699-7fb0-806a-8a86-ceb048ef97a9',
+        label: '발표자료',
       },
     ],
     sections: [
