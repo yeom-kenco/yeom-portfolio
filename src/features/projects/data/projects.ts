@@ -18,20 +18,20 @@ export const PROJECTS: Project[] = [
     stacks: ['react', 'typescript', 'tailwindcss', 'framer'],
   },
   {
-    id: 'Portfolio',
-    title: '포트폴리오 사이트',
-    coverImg: portfolioThumb,
-    summary:
-      '나의 프로젝트, 경험, 성장을 한눈에 확인할 수 있도록 직접 디자인하고 개발한 포트폴리오 사이트',
-    stacks: ['react', 'typescript', 'tailwindcss', 'framer'],
-  },
-  {
     id: 'Itplace',
     title: '통신사 멤버십 혜택 지도',
     coverImg: itplaceThumb,
     summary:
       'LG U+ 멤버십 사용자가 전국 제휴처를 지도 기반으로 탐색하고, 맞춤형 혜택 추천을 받을 수 있는 플랫폼',
     stacks: ['react', 'typescript', 'redux', 'kakaomap', 'gsap'],
+  },
+  {
+    id: 'Portfolio',
+    title: '포트폴리오 사이트',
+    coverImg: portfolioThumb,
+    summary:
+      '나의 프로젝트, 경험, 성장을 한눈에 확인할 수 있도록 직접 디자인하고 개발한 포트폴리오 사이트',
+    stacks: ['react', 'typescript', 'tailwindcss', 'framer'],
   },
   {
     id: 'Jobthoughts',
