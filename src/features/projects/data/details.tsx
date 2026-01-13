@@ -1,5 +1,43 @@
 import { ProjectDetail } from '../types';
 
+// [디자인 시스템] 텍스트 하이라이터
+const TextHighlight = ({
+  color,
+  children,
+}: {
+  color: 'red' | 'blue' | 'green' | 'purple';
+  children: string;
+}) => {
+  const styles = {
+    red: 'bg-red-50 text-red-600', // Problem
+    blue: 'bg-blue-50 text-blue-600', // Goal, Mission
+    green: 'bg-emerald-50 text-emerald-600', // Action, Solution
+    purple: 'bg-purple-50 text-purple-600', // Result, Outcome
+  };
+
+  return (
+    <span className={`font-bold px-1 rounded-[2px] mr-1.5 ${styles[color]}`}>[{children}]</span>
+  );
+};
+
+// [디자인 시스템] Notion 스타일 Callout (회고/배운점 강조 박스)
+const Callout = ({
+  icon,
+  title,
+  children,
+}: {
+  icon: string;
+  title: string;
+  children: React.ReactNode;
+}) => (
+  <div className="bg-slate-50 border border-slate-200 rounded-md p-3.5 mt-2 text-sm text-slate-700 leading-relaxed shadow-sm">
+    <div className="font-bold text-slate-900 mb-1.5 flex items-center gap-2 text-[15px]">
+      <span className="text-lg">{icon}</span> {title}
+    </div>
+    <div className="text-slate-600 pl-7">{children}</div>
+  </div>
+);
+
 export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
   Netflix: {
     id: 'Netflix',
@@ -367,8 +405,13 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
     id: 'Itplace',
     title: '통신사 멤버십 혜택을 쉽고\n스마트하게 탐색하는 지도 기반 플랫폼',
     description: [
-      <>통신사 멤버십 제휴 혜택을 지도 기반으로 탐색하고 개인화된 추천을 제공</>,
-      <>LG U+에서 회원 데이터를 제공받는 상황을 가정</>,
+      <>
+        LG 유플러스 유레카(URECA) 최종 융합 프로젝트 <b>우수상 수상작</b>
+      </>,
+      <>
+        분산된 멤버십 혜택 정보를 <b>지도(Map) 기반으로 시각화</b>하고, 개인화 추천을 통해 실제
+        방문까지 유도하는 반응형 웹 플랫폼
+      </>,
     ],
     stacks: [
       'javascript',
@@ -396,120 +439,132 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
     ],
     sections: [
       {
-        title: '1. 담당 역할',
-        groups: [
-          {
-            heading: 'UI/UX디자인',
-            items: [
-              <>마케팅을 고려한 게이미피케이션 요소와 이벤트 페이지의 UI 설계 및 흐름 구성</>,
-              <>Tailwind CSS를 활용한 반응형 인터페이스 설계</>,
-              <>모달, 토스트 알림, 사이드 바 등 인터랙티브 컴포넌트 디자인</>,
-            ],
-          },
-          {
-            heading: '프론트엔드 개발',
-            items: [
-              <>
-                React + TypeScript 기반 핵심 UI/UX 구현(마이 페이지, 이벤트 페이지, 주요 컴포넌트)
-              </>,
-              <>Kakao Map API를 활용한 제휴처 위치 마커 커스텀</>,
-              <>Axios 기반 API 연동 및 에러 핸들링 구현</>,
-            ],
-          },
-          {
-            heading: '각종 문서화',
-            items: [
-              <>레포지토리 리드미 총괄 작성</>,
-              <>팀 노션 회의록, 서비스 소개 등 필수 문서화 및 총정리</>,
-            ],
-          },
-        ],
-      },
-      {
-        title: '2. 주요 기능',
-        groups: [
-          {
-            heading: '지도 기반 제휴처 조회',
-            items: [
-              <>
-                사용자의 현재 위치 또는 지정 위치를 중심으로 주변 멤버십 제휴처와 혜택 정보를 지도
-                위에 시각적으로 제공
-              </>,
-              <>카카오 맵 API로 제휴처 마커 표시 + 로드뷰 제공</>,
-              <>GPS 기반 위치 탐색, 거리 정렬, 카테고리 필터 등 탐색형 UI</>,
-            ],
-          },
-          {
-            heading: '가상 멤버십 활용 및 이벤트 참여',
-            items: [
-              <>실제 결제 없이 가상으로 멤버십 혜택을 사용해보는 시뮬레이션 기능을 구현</>,
-              <>
-                사용 횟수에 따라 이벤트에 참여할 수 있는 게이미피케이션(Gamification) 요소를 도입
-              </>,
-            ],
-          },
-          {
-            heading: '사용자 혜택 추천',
-            items: [
-              <>
-                사용자의 행동 로그 및 혜택 사용 이력을 수집 및 분석하여, 관심사를 파악하고 가장
-                선호할 만한 혜택을 개인화하여 추천
-              </>,
-            ],
-          },
-          {
-            heading: '자연어 기반 AI 검색',
-            items: [
-              <>
-                "카페 갈 만한 곳 있어?" 와 같은 사용자의 자연어 질문을 AI가 분석하여, 의도에 맞는
-                제휴처를 제공
-              </>,
-            ],
-          },
-          {
-            heading: '관리자 대시보드',
-            items: [<>제휴처/사용자 통계, 정보 조회·수정 등</>],
-          },
-        ],
-      },
-      {
-        title: '3. 성과 및 배운 점',
-        groups: [
-          {
-            heading: '성과',
-            items: [
-              <>제휴처 사용을 유도한다는 점에서 마케팅 효과까지 고려한 완성도있는 프로젝트</>,
-              <>프로젝트의 최종 배포 성공 및 버그 없는 안정적인 결과물 완성</>,
-              <>UI/UX 인터랙션에서 이용자 경험에 대한 긍정적 피드백 획득 (모달, 토스트 알림 등)</>,
-              <>다양한 환경(모바일 & 데스크탑)에서도 안정적인 속도와 UI 제공</>,
-              <>
-                상태 관리(Redux Toolkit, Redux-Persist), API 에러 핸들링, 반응형 UI 설계 역량 강화
-              </>,
-              <>유레카 최종 프로젝트 경진대회 우수상 수상</>,
-            ],
-          },
-          {
-            heading: '회고 & 개선점',
-            items: [
-              <>
-                짧은 기간 서비스 기획, 디자인, 개발을 모두 마쳐야 했기에테스트 코드를 작성하지 못한
-                점이 아쉬움 <br />
-                ➡️ 디버깅 시 흐름 단위 테스트로 보완
-              </>,
-              <>
-                팀원간 API 에러 핸들링의 일관성 부족 <br />
-                ➡️ 사용자 메시지와 형식 일관성의 필요성을 인식
-              </>,
-              <>협업 과정에서 코드 리뷰 문화의 중요성과 명확한 커뮤니케이션의 가치를 깊이 체감</>,
-            ],
-          },
-        ],
-      },
-      {
-        title: '4. 다음 목표',
+        title: '1. 배경 및 목표 (Situation & Task)',
         bullets: [
-          <>Next.js 등 SSR 프레임워크로 성능·SEO 개선 실험</>,
-          <>테스트 자동화·CI/CD 배포 환경 구축으로 안정적이고 확장 가능한 개발 역량 강화</>,
+          <>
+            <TextHighlight color="red">Problem</TextHighlight>
+            <b>정보의 파편화와 낮은 활용도</b>
+            <br />
+            <span className="block mt-1 leading-relaxed">
+              대부분의 사용자가 혜택을 보유하고 있음에도, 텍스트 위주의 정보와 복잡한 검색 과정으로
+              인해 내 주변 혜택을 즉각적으로 찾기 어려움.
+            </span>
+          </>,
+          <>
+            <TextHighlight color="green">Goal</TextHighlight>
+            <b>위치 기반 시각화 & 마케팅 효과 창출</b>
+            <br />
+            <span className="block mt-1 leading-relaxed">
+              데이터를 <b>지도 위에서 직관적으로 보여주고</b>, 게이미피케이션 요소를 도입해{' '}
+              <b>체류 시간 증대 및 방문 유도</b>를 달성하는 것이 목표.
+            </span>
+          </>,
+        ],
+      },
+      {
+        title: '2. 핵심 설계 및 구현 (Action)',
+        groups: [
+          {
+            heading: 'Figma를 활용한 빈틈없는 유저 플로우 설계',
+            items: [
+              <>
+                <TextHighlight color="blue">Edge Case</TextHighlight>
+                <b className="text-blue-600">예외 상황까지 고려한 디테일 설계</b>
+                <br />
+                단순 Happy Path뿐만 아니라, <b>검색 결과 없음(Empty)</b>, <b>비로그인 접근</b>,{' '}
+                <b>오류 발생</b> 등 모든 예외를 시각화하여 개발 시행착오 최소화.
+                <div className="mt-1 pl-2 text-sm text-slate-500 border-l-2 border-slate-100 space-y-1">
+                  <p>
+                    • <b>Empty State</b>: 검색 결과나 데이터가 없을 때의 안내 UI
+                  </p>
+                  <p>
+                    • <b>Auth Guard</b>: 비로그인 접근 시 차단 및 로그인 유도 모달
+                  </p>
+                  <p>
+                    • <b>Error Feedback</b>: 오류 발생 시 사용자에게 제공할 친절한 피드백
+                  </p>
+                </div>
+              </>,
+              <>
+                <TextHighlight color="blue">CTA Flow</TextHighlight>
+                <b className="text-blue-600">목적 중심의 행동 유도 설계</b>
+                <br />
+                서비스 목표인 '제휴처 방문'을 위해 <b>[가상 혜택 경험 → 이벤트 참여 → 실제 방문]</b>
+                으로 이어지는 자연스러운 동선 구축.
+              </>,
+            ],
+          },
+          {
+            heading: '지도 시각화 & UX 디테일 (Dev)',
+            items: [
+              <>
+                <TextHighlight color="blue">Visualization</TextHighlight>
+                <b className="text-blue-600">브랜드 로고 마커 커스텀</b>
+                <br />
+                단순 핀이 아닌 <b>제휴처 로고를 지도 위에 직접 렌더링</b>하여, 사용자가 상호명을
+                읽지 않고도 브랜드를 직관적으로 식별하도록 구현.
+              </>,
+              <>
+                <TextHighlight color="blue">Interaction</TextHighlight>
+                <b className="text-blue-600">마이크로 인터랙션 (Micro-interaction)</b>
+                <br />
+                혜택을 즐겨찾기 할 때 <b>'폴더에 쏙 담기는 듯한' 애니메이션</b>을 구현하여, 사용자의
+                행동에 대해 명확하고 즐거운 시각적 피드백 제공.
+              </>,
+              <>
+                <TextHighlight color="blue">Search</TextHighlight>
+                <b className="text-blue-600">탐색 편의성 강화</b>
+                <br />
+                GPS 기반 거리순 정렬, 카테고리 필터링을 구현하여 능동적인 혜택 탐색 지원.
+              </>,
+            ],
+          },
+          {
+            heading: '안정성 및 협업 효율화',
+            items: [
+              <>
+                <TextHighlight color="blue">Docs</TextHighlight>
+                <b className="text-blue-600">
+                  정보 비대칭 해소
+                  <br />
+                </b>
+                README, 회의록, 서비스 정의, 각종 링크 등의 정리 및 작성을 총괄하여 프론트/백엔드
+                간의 소통 비용 절감.
+              </>,
+            ],
+          },
+        ],
+      },
+      {
+        title: '3. 성과 (Result)',
+        bullets: [
+          <>
+            <TextHighlight color="purple">Award</TextHighlight>
+            <b>유레카 최종 프로젝트 경진대회 본선 진출 및 우수상 수상</b>
+          </>,
+          <>
+            <TextHighlight color="purple">Deploy</TextHighlight>
+            다양한 환경(모바일/데스크탑)에서 버그 없는 <b>안정적인 배포 성공</b>
+          </>,
+          <>
+            <TextHighlight color="purple">Feedback</TextHighlight>
+            "데이터가 없을 때의 안내가 친절하다"는 <b>긍정적 사용자 피드백 획득</b>
+          </>,
+        ],
+      },
+      {
+        title: '4. 회고 및 배운점 (Lessons Learned)',
+        bullets: [
+          <Callout icon="💡" title="설계가 탄탄하면 개발이 빨라진다">
+            코드를 작성하기 전, Figma를 통해 예외 상황까지 미리 시뮬레이션해 본 덕분에 실제 개발
+            단계에서의 시행착오를 획기적으로 줄일 수 있었습니다.{' '}
+            <b>'설계 단계에서의 꼼꼼함이 전체 개발 생산성을 좌우한다'</b>는 것을 배웠습니다.
+          </Callout>,
+          <Callout icon="🔧" title="협업과 품질의 중요성">
+            짧은 기간 안에 기획부터 디자인까지 진행하다보니 테스트 코드를 작성하지 못한 아쉬움을
+            통해 <b>TDD의 필요성</b>을 느꼈으며, <b>명확한 문서화</b>가 팀의 커뮤니케이션 비용을
+            얼마나 줄여주는지 체감했습니다.
+          </Callout>,
         ],
       },
     ],
