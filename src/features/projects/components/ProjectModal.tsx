@@ -4,15 +4,23 @@ import LinkChips from './LinkChips';
 import { ProjectDetail } from '../types';
 
 /**
- * 스크린샷 레이아웃을 그대로 반영:
- * - 상단: 큰 타이틀
- * - "프로젝트 설명" / 설명 단락
- * - "기술스택" / devicon 아이콘 줄
- * - "참여 인원" / "기간" 2열 메타
- * - "관련 링크" 칩
- * - 구분선
- * - "상세 내용" 섹션: 1,2,3,4 번호 제목 + 불릿
+ * [수정 포인트]
+ * 1. 기존의 ul/li list-disc 스타일 제거
+ * 2. Flexbox(flex, items-start)를 사용하여 불릿과 텍스트 영역 분리
+ * 3. shrink-0 속성으로 불릿이 찌그러지지 않게 고정
+ * 4. flex-1 속성으로 텍스트가 남은 공간을 모두 차지하며 정렬되도록 처리
  */
+
+// 커스텀 불릿 컴포넌트 (메인 불릿)
+const MainBullet = () => (
+  <span className="shrink-0 w-1.5 h-1.5 mt-[0.6rem] rounded-full bg-slate-800 mx-3" />
+);
+
+// 서브 불릿 컴포넌트 (하위 항목용)
+const SubBullet = () => (
+  <span className="shrink-0 w-1 h-1 mt-[0.5rem] rounded-full bg-slate-400 mr-2.5" />
+);
+
 export default function ProjectModal({
   open,
   onClose,
@@ -83,38 +91,62 @@ export default function ProjectModal({
             </h3>
 
             {/* 번호가 붙는 하위 섹션들(1., 2., 3. ...)을 순서대로 출력 */}
-            <div className="mt-4 space-y-8">
+            <div className="mt-6 space-y-10">
               {detail.sections.map((sec, idx) => (
                 <div key={idx}>
                   {/* 하위 섹션 제목: 예) '1. 프로젝트 개요' */}
-                  <h4 className="text-[clamp(16px,1.4vw,20px)] font-heading font-extrabold text-brand-purple">
+                  <h4 className="text-[clamp(16px,1.4vw,20px)] font-heading font-extrabold text-ink mb-4">
                     {sec.title}
                   </h4>
 
                   {/* 케이스 1: "그룹 기반(2단계 목록)" */}
                   {sec.groups?.length ? (
-                    <ul className="mt-3 ml-4 space-y-3 pl-5 list-disc marker:text-ink">
+                    <ul className="space-y-4">
                       {sec.groups.map((g, gi) => (
-                        <li key={gi}>
-                          {/* 소제목(굵게) */}
-                          <span className="font-semibold text-ink">{g.heading}</span>
-                          {/* 소제목의 하위 불릿들 */}
-                          {g.items?.length ? (
-                            <ul className="mt-2 pl-5 list-disc space-y-1.5 text-[clamp(14px,1.1vw,16px)] text-ink-muted">
-                              {g.items.map((it, ii) => (
-                                <li key={ii}>{it}</li>
-                              ))}
-                            </ul>
-                          ) : null}
+                        <li key={gi} className="flex items-start">
+                          {/* 1. 메인 불릿 (Flex Item) */}
+                          <MainBullet />
+
+                          {/* 2. 텍스트 영역 (Flex Item - 남은 공간 차지) */}
+                          <div className="flex-1">
+                            {/* 소제목(굵게) */}
+                            {/* span 대신 div 사용: heading 안에 태그(block요소)가 들어올 수 있으므로 */}
+                            <div className="font-extrabold text-ink leading-relaxed">
+                              {g.heading}
+                            </div>
+
+                            {/* 소제목의 하위 불릿들 */}
+                            {g.items?.length ? (
+                              <ul className="mt-2 space-y-2">
+                                {g.items.map((it, ii) => (
+                                  <li key={ii} className="flex items-start">
+                                    {/* 서브 불릿 */}
+                                    <SubBullet />
+                                    {/* 서브 텍스트 */}
+                                    <span className="flex-1 text-[clamp(14px,1.1vw,16px)] text-ink leading-relaxed">
+                                      {it}
+                                    </span>
+                                  </li>
+                                ))}
+                              </ul>
+                            ) : null}
+                          </div>
                         </li>
                       ))}
                     </ul>
                   ) : (
                     /* 케이스 2: "단일 불릿 목록" (groups가 없고 bullets가 있을 때) */
                     !!sec.bullets?.length && (
-                      <ul className="mt-3 ml-4 font-semibold list-disc space-y-1.5 pl-5 text-[clamp(14px,1.1vw,16px)] text-ink">
+                      <ul className="space-y-2">
                         {sec.bullets.map((b, i) => (
-                          <li key={i}>{b}</li>
+                          <li key={i} className="flex items-start">
+                            {/* 메인 불릿 */}
+                            <MainBullet />
+                            {/* 텍스트 */}
+                            <span className="flex-1 font-bold text-[clamp(14px,1.1vw,16px)] text-ink leading-relaxed">
+                              {b}
+                            </span>
+                          </li>
                         ))}
                       </ul>
                     )
