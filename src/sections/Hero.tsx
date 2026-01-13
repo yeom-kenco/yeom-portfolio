@@ -86,7 +86,7 @@ export default function Hero() {
 
               <Reveal y={10}>
                 <p className="font-heading leading-tight text-[clamp(18px,2.3vw,32px)] font-normal text-brand-purple/90">
-                  즐거운 경험을 만드는
+                  설득력 있는 코드로 가치를 더하는
                   <br />
                   <b className="font-heading text-[clamp(18px,2.4vw,32px)] text-brand-purple">
                     프론트엔드 개발자, 염승아
