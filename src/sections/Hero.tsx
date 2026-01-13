@@ -11,7 +11,7 @@ import profile1 from '../assets/images/profile.webp';
 import profile2 from '../assets/images/profile.png';
 
 export default function Hero() {
-  const upDate = '2025.12.03';
+  const upDate = '2026.01.13';
 
   return (
     <Section id="top" className="bg-surface">
