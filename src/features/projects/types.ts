@@ -25,7 +25,7 @@ export type ProjectDetailSection = {
 };
 
 export type ProjectDetailBulletGroup = {
-  heading: string; // 예: "백엔드 설계 및 인증 시스템 구현"
+  heading: string | React.ReactNode; // 예: "백엔드 설계 및 인증 시스템 구현"
   items: React.ReactNode[]; // 소제목 하위 불릿들
 };
 
