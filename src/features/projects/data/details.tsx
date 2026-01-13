@@ -478,7 +478,7 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
                     • <b>Empty State</b>: 검색 결과나 데이터가 없을 때의 안내 UI
                   </p>
                   <p>
-                    • <b>Auth Guard</b>: 비로그인 접근 시 차단 및 로그인 유도 모달
+                    • <b>Auth Guard</b>: 비로그인 접근 시 차단 및 로그인 유도 UI
                   </p>
                   <p>
                     • <b>Error Feedback</b>: 오류 발생 시 사용자에게 제공할 친절한 피드백
@@ -548,7 +548,8 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
           </>,
           <>
             <TextHighlight color="purple">Feedback</TextHighlight>
-            "데이터가 없을 때의 안내가 친절하다"는 <b>긍정적 사용자 피드백 획득</b>
+            "데이터가 없을 때의 안내가 친절하다", "UX가 아주 매끄럽다"는 등의{' '}
+            <b>긍정적 사용자 피드백 획득</b>
           </>,
         ],
       },
@@ -801,8 +802,8 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
             <b>기획 그 이상의 퀄리티로 MVP 배포 성공</b>
             <br />
             <span className="block mt-1">
-              디자이너의 기획 의도를 오차 없이 구현하여 협업 신뢰도를 높이고, VaporUI 디자인
-              시스템을 적극 활용하며 모바일 터치 환경에 최적화된 직관적인 예약 경험 제공.
+              기획자와 디자이너의 디자인 의도를 오차 없이 구현하여 협업 신뢰도를 높이고, VaporUI
+              디자인 시스템을 적극 활용하며 모바일 터치 환경에 최적화된 직관적인 예약 경험 제공.
             </span>
           </>,
           <>
@@ -828,7 +829,7 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
               기획서의 빈칸을 기술적 상상력으로 채워 사용성을 개선하고 비즈니스 목표(유입/전환)까지
               기여할 수 있는 포지션
             </b>
-            임을 확신하게 되었습니다.
+            임을 느끼게 되었습니다.
           </Callout>,
         ],
       },
