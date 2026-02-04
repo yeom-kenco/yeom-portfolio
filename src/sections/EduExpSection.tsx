@@ -218,6 +218,7 @@ function CertificateRow({ item }: { item: CertificateItem }) {
                         src={src}
                         alt={`${item.name} - 이미지 ${i + 1}`}
                         className="rounded-xl border border-[#EEE] shadow-sm"
+                        loading="lazy"
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
