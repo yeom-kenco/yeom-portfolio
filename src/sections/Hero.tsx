@@ -106,7 +106,7 @@ export default function Hero() {
                     title: '이력서',
                     message: '아직 준비중입니다! 곧 업데이트할게요 🙏',
                     variant: 'warning', // success | warning | error | default
-                    duration: 2400, // (ms) 원하면 조절
+                    duration: 2400,
                   })
                 }
                 className="self-center md:self-start"

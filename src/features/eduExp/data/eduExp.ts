@@ -99,7 +99,7 @@ export const certificates: CertificateItem[] = [
     detailsLinkLabel: '취득 정보 자세히 보기',
   },
   {
-    date: '2024.10.20',
+    date: '2024.12.11',
     name: '정보처리기사',
     images: [ipeCert, ipeScore, ipeScore2],
     detailsLinkLabel: '취득 정보 자세히 보기',
