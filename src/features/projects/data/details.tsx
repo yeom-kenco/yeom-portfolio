@@ -718,8 +718,7 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
                       - <b>경량화</b>: 무거운 DatePicker 대신 핵심 로직만 구현하여 번들 사이즈
                       최적화
                     </p>
-                    - <b>초기 진입</b>: 앱 진입 시 무조건 '오늘'이 화면 최좌측(Index 0)에 오도록
-                    배열 재구성
+                    - <b>초기 진입</b>: 앱 진입 시 무조건 '오늘'이 화면 최좌측에 오도록 배열 재구성
                   </p>
                   <p>
                     - <b>Seamless</b>: 월(Month)이 바뀌는 구간에서도 스크롤이 끊기지 않는 매끄러운
