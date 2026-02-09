@@ -6,12 +6,22 @@ import Container from '../primitives/Container';
 import Reveal from '../motion/Reveal';
 import { MButton } from './../primitives/Button';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { toast } from '../hooks/useToast';
 import profile1 from '../assets/images/profile.webp';
 import profile2 from '../assets/images/profile.png';
+import resumePdf from '../assets/files/resume.pdf';
 
 export default function Hero() {
-  const upDate = '2026.01.13';
+  const upDate = '2026.02.09';
+
+  // 다운로드 핸들러 함수 추가
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = resumePdf;
+    link.download = '프론트엔드_염승아_이력서.pdf'; // 다운로드될 때 저장될 파일명 설정
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <Section id="top" className="bg-surface">
@@ -101,14 +111,7 @@ export default function Hero() {
               <MButton
                 whileHover={{ y: -2, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() =>
-                  toast({
-                    title: '이력서',
-                    message: '아직 준비중입니다! 곧 업데이트할게요 🙏',
-                    variant: 'warning', // success | warning | error | default
-                    duration: 2400,
-                  })
-                }
+                onClick={handleDownload}
                 className="self-center md:self-start"
               >
                 이력서 다운로드
