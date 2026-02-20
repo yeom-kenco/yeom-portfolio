@@ -1,4 +1,4 @@
-import{j as e,m as p,r as h,A as f,u as F,a as y,S as v,C as w}from"./index-hHx7oOSF.js";import{T as N}from"./TechIcons-BgDKnM8z.js";const k={hidden:{opacity:0,y:22},show:{opacity:1,y:0,transition:{type:"spring",stiffness:260,damping:24,mass:.6}}};function A({project:t,onClick:n}){const s=()=>n(t);return e.jsxs(p.article,{variants:k,onClick:s,"aria-label":`${t.title} 상세 보기`,className:`
+import{j as e,m as p,r as h,A as f,u as F,a as y,S as v,C as w}from"./index-6_H6ream.js";import{T as N}from"./TechIcons-i-wDgEiM.js";const k={hidden:{opacity:0,y:22},show:{opacity:1,y:0,transition:{type:"spring",stiffness:260,damping:24,mass:.6}}};function A({project:t,onClick:n}){const s=()=>n(t);return e.jsxs(p.article,{variants:k,onClick:s,"aria-label":`${t.title} 상세 보기`,className:`
         group flex h-full flex-col cursor-pointer rounded-2xl
         bg-white p-2 shadow-[0_4px_20px_-6px_rgba(0,0,0,0.2)]
         transition-colors hover:bg-surface-soft
